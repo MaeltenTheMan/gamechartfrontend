@@ -1,0 +1,52 @@
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    left:0;
+    height: 60px;
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
+
+  .navbar a.active {
+    background: #ddd;
+    color: black;
+  }
+
+
+  
+  //to create a manual spinnercolor
+  .mat-spinner-color::ng-deep circle{
+    stroke: #333 !important;
+  }
+
+  //fixed and centered
+  mat-spinner{
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+   
+  }
+
+  

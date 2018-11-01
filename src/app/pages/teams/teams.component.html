@@ -1,0 +1,28 @@
+<mat-table [dataSource]="dataSource" matSort >
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Name</mat-header-cell>
+        <mat-cell *matCellDef="let team">{{team.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="motto">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Regel</mat-header-cell>
+        <mat-cell *matCellDef="let team">{{team.motto}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="memberone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Spieler 1</mat-header-cell>
+        <mat-cell *matCellDef="let team">{{team.memberone}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="membertwo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Spieler 2</mat-header-cell>
+        <mat-cell *matCellDef="let team">{{team.membertwo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef  class="heading">Bearbeiten</mat-header-cell>
+        <mat-cell *matCellDef="let team">
+            <i class="material-icons" id="deleteTeam" title="Team löschen"  (click)="deleteTeam(team.id)">cancel</i>
+            <i class="material-icons" id="changeTeam" (click)="changeTeam(team.id)" title="Team bearbeiten">build</i>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<button mat-raised-button color="primary" (click)="newTeam()" style="margin-left: 15px">Neues Team erstellen</button>

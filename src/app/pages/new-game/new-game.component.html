@@ -1,0 +1,58 @@
+  <mat-card style="margin: 15px">
+    <mat-card-title style="font-weight: bold">
+      Neues Spiel erstellen
+    </mat-card-title>
+  <form [formGroup]="gameForm" class="formfield" style="width: 100%" #formDirective="ngForm" >
+    <mat-card style="margin-bottom: 20px;">
+      <mat-form-field>
+        <input matInput placeholder="Spielname" formControlName="name">
+        <mat-error >Es muss ein Spielname gewählt werden!</mat-error>
+      </mat-form-field>
+    </mat-card>
+    <mat-card style="margin-bottom: 20px;">
+      <mat-card-title> Platzierungen</mat-card-title>
+    <mat-form-field> 
+      <mat-select placeholder="Gold" formControlName="winner">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error >Es muss ein Erstplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Silber" formControlName="second">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error >Es muss ein Zweitplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Bronze" formControlName="third">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error >Es muss ein Drittplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Blech" formControlName="fourth">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error >Es muss ein Viertplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-select placeholder="Loser" formControlName="fifth">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error >Es muss ein Erstplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+  </mat-card>
+    <button mat-raised-button color="primary" (click)="sendGame()" [disabled]="!gameForm.valid">Ergebnisse senden</button>
+    <button mat-raised-button color="warn" (click)="resetGameForm()">Reset</button>
+  </form>
+</mat-card>

@@ -1,0 +1,27 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>
+      Erstelle ein neues Team
+    </mat-card-title>
+  <form [formGroup]="teamForm" class="formfield">
+    <mat-form-field>
+      <input matInput placeholder="Teamname" formControlName="name">
+      <mat-error >muss ausgefüllt sein</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Teammotto" formControlName="motto">
+      <mat-error >muss ausgefüllt sein</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Spieler 1" formControlName="memberone">
+      <mat-error >muss ausgefüllt sein</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Spieler 2" formControlName="membertwo">
+      <mat-error >muss ausgefüllt sein</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createNewTeam()" [disabled]="!teamForm.valid">Team erstellen</button>
+    <button mat-raised-button color="warn" (click)="close()" >Abbrechen</button>
+  </form>
+</mat-card>
+</mat-dialog-content>

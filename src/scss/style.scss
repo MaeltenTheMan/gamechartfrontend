@@ -1,0 +1,42 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.heading{ 
+    font-weight: bold; 
+    font-size : 100%;
+    color: #fff;
+ 
+}
+.headerSpan{
+    float: left;
+    padding-top: 10px;
+   
+  }
+mat-row:nth-child(odd){
+    background-color:#ddd;
+}
+mat-row:nth-child(even){
+    background-color: #F8F8f8;
+}
+
+mat-table{
+    margin: 15px;
+    border: 2px solid #F8F8f8; 
+    scroll-behavior: auto;
+    
+}
+mat-header-row{
+    background-color: #333;
+    
+    width: 100%;
+ 
+}
+
+.material-icons:hover{
+    cursor: pointer;
+}
