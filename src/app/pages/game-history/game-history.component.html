@@ -18,8 +18,8 @@
   <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef  class="heading">Bearbeiten</mat-header-cell>
       <mat-cell *matCellDef="let game" >
-        <i class="material-icons" id="deleteGame" title="Team löschen" (click)="deleteGame(game.id)">cancel</i>
-        <i class="material-icons" title="Untersuchen" (click)="inspectGame(game.id)">search</i>
+        <button mat-raised-button color="warn" title="Team löschen" (click)="deleteGame(game.id)"><i class="material-icons">cancel</i></button> 
+        <button mat-raised-button color="primary"  title="Untersuchen" (click)="inspectGame(game.id)"><i class="material-icons">search</i></button> 
       </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

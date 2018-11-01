@@ -15,16 +15,16 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TeamService {
 
-    private teamsList : BehaviorSubject<Array<Team>>;
+    private teamsList: BehaviorSubject<Array<Team>>;
 
-    private loaded : boolean;
+    private loaded: boolean;
 
-    constructor(private api: BasicAPI){
+    constructor(private api: BasicAPI) {
         this.loaded = false;
         this.teamsList = new BehaviorSubject([]);
     }
 
-    public getAllTeams(): Observable<Array<Team>>{
+    public getAllTeams(): Observable<Array<Team>> {
 
         this.api.getTeams().take(1).subscribe(result => this.teamsList.next(result));
 

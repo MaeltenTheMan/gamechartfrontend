@@ -4,5 +4,5 @@ export interface Team {
     motto: string;
     memberone: string;
     membertwo: string;
-    points: number; 
+    points?: number; 
 }

@@ -1,10 +1,13 @@
+import { Player } from './../models/Player';
 import { Game } from './../models/Game';
 import { Team } from './../models/Team';
-import {Injectable, Optional} from "@angular/core";
+import { Injectable, Optional } from "@angular/core";
 import 'rxjs/add/operator/map';
-import { HttpClient, HttpHeaders, HttpParams,
-    HttpResponse, HttpEvent }  from '@angular/common/http';
-import {Observable} from "rxjs/Observable";
+import {
+    HttpClient, HttpHeaders, HttpParams,
+    HttpResponse, HttpEvent
+} from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
 
 
 @Injectable()
@@ -12,84 +15,77 @@ export class BasicAPI {
 
     public defaultHeaders = new HttpHeaders();
 
+    public httpHeaders = new HttpHeaders({
+        "Content-Type": 'application/json',
+    });
+
+    public options = {
+
+        headers: this.httpHeaders
+
+    }
+
+
+
     protected basePath = 'http://localhost:8080';
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient) {
 
     }
     //getting all Teams for Table and teamcontrols
-    getTeams():Observable<Team[]>{
-    
-        return this.http.get<Team[]>(this.basePath + "/getAllTeams");  
+    getTeams(): Observable<Team[]> {
+
+        return this.http.get<Team[]>(this.basePath + "/getAllTeams");
     }
 
     //getting all Games for GameHistory and GameControls
-    getGames():Observable<Game[]> {
-    
-        return this.http.get<Game[]>(this.basePath + "/getAllGames");  
+    getGames(): Observable<Game[]> {
+
+        return this.http.get<Game[]>(this.basePath + "/getAllGames");
     }
 
-    createNewTeam(body):Observable<Team> {
+    getPlayer(): Observable<Player[]> {
+        return this.http.get<Player[]>(this.basePath + "/getAllPlayer");
+    }
 
-        let httpHeaders = new HttpHeaders({
-            "Content-Type": 'application/json',
-        });
+    createNewTeam(body): Observable<Team> {
 
-        let options = {
-            headers: httpHeaders,   
-       }; 
-
-        return this.http.post<Team>(this.basePath  + "/createTeam", body , options);
+        return this.http.post<Team>(this.basePath + "/createTeam", body, this.options);
     }
 
 
-    newGame(body):Observable<Game>{
-        let httpHeaders = new HttpHeaders({
-            "Content-Type": 'application/json',
-        });
+    newGame(body): Observable<Game> {
 
-        let options = {
-            headers: httpHeaders,   
-       }; 
-        return this.http.post<Game>(this.basePath + "/newGame", body, options)
+        return this.http.post<Game>(this.basePath + "/newGame", body, this.options)
     }
 
-    deleteTeamByID(teamId: number):Observable<Team>{
-        let httpHeaders = new HttpHeaders({
-            "Content-Type": 'application/json',
-        });
-        let options = {
-            headers: httpHeaders,   
-       }; 
-        return this.http.delete<Team>(this.basePath + "/deleteTeamById/" + teamId, options);
+
+    deleteTeamByID(teamId: number): Observable<Team> {
+
+        return this.http.delete<Team>(this.basePath + "/deleteTeamById/" + teamId, this.options);
     }
 
-    deleteGameByID(gameId: number):Observable<Team>{
-        let httpHeaders = new HttpHeaders({
-            "Content-Type": 'application/json',
-        });
-        let options = {
-            headers: httpHeaders,   
-       }; 
-        return this.http.delete<Team>(this.basePath + "/deleteGameById/" + gameId, options);
+
+    deleteGameByID(gameId: number): Observable<Team> {
+
+        return this.http.delete<Team>(this.basePath + "/deleteGameById/" + gameId, this.options);
     }
 
-    getBiggestPoints():Observable<Team>{
+
+    getBiggestPoints(): Observable<Team> {
         return this.http.get<Team>(this.basePath + "/getFirstPlace");
     }
 
-    getTeamByID(teamId):Observable<Team>{
-        let httpHeaders = new HttpHeaders({
-            "Content-Type": 'application/json',
-        });
-        let options = {
-            headers: httpHeaders,   
-       }; 
 
-       return this.http.get<Team>(this.basePath + "/getTeamByID/" + teamId, options )
+    getTeamByID(teamId): Observable<Team> {
+
+        return this.http.get<Team>(this.basePath + "/getTeamByID/" + teamId, this.options)
     }
 
 
+    editTeam(id, body): Observable<Team> {
 
-   
+        return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options)
+    }
+
 }

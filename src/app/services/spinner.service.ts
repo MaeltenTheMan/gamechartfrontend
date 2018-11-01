@@ -3,14 +3,14 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class SpinnerService {
-  
+
   onLoadingChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
   /**
    * Stores all currently active requests
    */
   private requests: HttpRequest<any>[] = [];
-  
+
   /**
    * Adds request to the storage and notifies observers
    */
@@ -18,7 +18,7 @@ export class SpinnerService {
     this.requests.push(req);
     this.notify();
   }
-  
+
   /**
    * Removes request from the storage and notifies observers
    */
@@ -27,15 +27,15 @@ export class SpinnerService {
     if (index !== -1) {
       this.requests.splice(index, 1);
     }
-   
+
     this.notify();
   }
-  
+
   /**
    * Notifies observers about whether there are any requests on fly
    */
   private notify(): void {
     this.onLoadingChanged.emit(this.requests.length !== 0);
   }
-  
+
 }

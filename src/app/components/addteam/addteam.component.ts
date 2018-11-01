@@ -21,7 +21,7 @@ export class AddteamComponent implements OnInit {
 
   ngOnInit() {
     this.createTeamForm();
-    this.dialog.updateSize("400px", "450px")
+    this.dialog.updateSize("400px", "450px");
   
   }
 

@@ -1,9 +1,10 @@
+import { PlayerListComponent } from './pages/player-list/player-list.component';
+import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { TeamService } from './services/team.service';
 import { IDToNameConverter } from './pipes/idtoname.pipe';
 import { GameHistoryComponent } from './pages/game-history/game-history.component';
 import { SpinnerService } from './services/spinner.service';
 import { HttpSpinnerInterceptor } from './services/httpinterceptor.service';
-
 import { NewGameComponent } from './pages/new-game/new-game.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,6 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddteamComponent } from './components/addteam/addteam.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,10 +38,12 @@ import { AddteamComponent } from './components/addteam/addteam.component';
     AddteamComponent,
     NewGameComponent,
     GameHistoryComponent,
-    IDToNameConverter
+    IDToNameConverter,
+    EditTeamComponent,
+    PlayerListComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpModule,
     FormsModule,
     HttpClientModule,
@@ -46,13 +51,14 @@ import { AddteamComponent } from './components/addteam/addteam.component';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     AppRoutingModule
-    
+
   ],
   entryComponents: [
-    AddteamComponent
+    AddteamComponent,
+    EditTeamComponent
   ],
   providers: [
-    BasicAPI, 
+    BasicAPI,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpSpinnerInterceptor,

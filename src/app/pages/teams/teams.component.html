@@ -1,4 +1,4 @@
-<mat-table [dataSource]="dataSource" matSort >
+<mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Name</mat-header-cell>
         <mat-cell *matCellDef="let team">{{team.name}} </mat-cell>
@@ -16,13 +16,14 @@
         <mat-cell *matCellDef="let team">{{team.membertwo}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef  class="heading">Bearbeiten</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="heading">Bearbeiten</mat-header-cell>
         <mat-cell *matCellDef="let team">
-            <i class="material-icons" id="deleteTeam" title="Team löschen"  (click)="deleteTeam(team.id)">cancel</i>
-            <i class="material-icons" id="changeTeam" (click)="changeTeam(team.id)" title="Team bearbeiten">build</i>
+            <button mat-raised-button color="warn" title="Team löschen" (click)="deleteTeam(team.id)"><i class="material-icons">cancel</i></button>
+            <button mat-raised-button color="primary" title="Team bearbeiten" (click)="changeTeam(team.id)"><i class="material-icons">build</i></button>
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-<button mat-raised-button color="primary" (click)="newTeam()" style="margin-left: 15px">Neues Team erstellen</button>
+<button mat-raised-button color="primary" title="Neues Team erstellen" (click)="newTeam()" style="margin-left: 15px">Neues
+    Team erstellen</button>

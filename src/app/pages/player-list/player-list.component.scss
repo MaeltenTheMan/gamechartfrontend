@@ -1,0 +1,29 @@
+.mat-grid-tile::ng-deep .mat-figure{
+    justify-content: normal;
+    align-items:baseline; 
+}
+
+.pics{
+    width: 350px;
+    height: 350px; 
+}
+
+.MatCardParent{
+    
+    max-width:800px; 
+    margin: auto; 
+    margin-top: 15px; 
+    margin-bottom: 40px; 
+    background-color: #eee;
+    min-width:420px;
+}
+
+@media screen and (max-width: 800px){
+    .MatCardParent{
+        width: 420px;
+        margin:auto;
+    }
+
+}
+
+

@@ -1,0 +1,44 @@
+<mat-card class="MatCardParent">
+    <span style="white-space: nowrap; margin-bottom:20px;">
+        <h1 style="margin:auto; margin-bottom: 20px;">Spielerkartei </h1>
+        <button mat-raised-button color="primary" (click)="createNewPlayer()">Spieler hinzufügen</button>
+    </span>
+    <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)" style="margin-top: 20px;"> 
+        <mat-grid-tile colspan="1">
+            <mat-card>
+                <mat-card-content>
+                    <img src="../assets/Pictures/esel.jpg" class="pics">
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <p>
+                der name
+            </p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <mat-card>
+                <mat-card-content>
+                    <img src="../assets/Pictures/hai.jpg" class="pics">
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <p>
+                der name
+            </p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <mat-card>
+                <mat-card-content>
+                    <img src="../assets/Pictures/esel.jpg" class="pics">
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <p>
+                der name
+            </p>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

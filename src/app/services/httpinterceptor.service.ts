@@ -7,17 +7,17 @@ import 'rxjs/add/operator/finally';
 
 
 @Injectable()
-export class HttpSpinnerInterceptor implements HttpInterceptor{
+export class HttpSpinnerInterceptor implements HttpInterceptor {
 
-    constructor(private spinnerService: SpinnerService ){
+    constructor(private spinnerService: SpinnerService) {
 
     }
 
-    intercept(req: HttpRequest<any> , next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // emit onStarted event before request execution
         this.spinnerService.onStarted(req);
-        
+
         return next.handle(req).finally(() => this.spinnerService.onFinished(req));
     }
-      
+
 }
