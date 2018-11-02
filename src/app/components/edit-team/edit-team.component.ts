@@ -15,7 +15,10 @@ export class EditTeamComponent implements OnInit {
 
   teamForm: FormGroup;
   
-  constructor(private api : BasicAPI, private dialog: MatDialogRef<EditTeamComponent>, private fb: FormBuilder,  @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    private api : BasicAPI, private dialog: MatDialogRef<EditTeamComponent>, 
+    private fb: FormBuilder,  
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {

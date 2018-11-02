@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DateAdapter, MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatListModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatListModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -12,7 +12,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 
 
@@ -45,11 +46,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
         MatSortModule,
         MatListModule,
         MatMenuModule,
-        MatSidenavModule
-        
-        
+        MatSidenavModule,
+  
+
+
     ],
-    exports:[
+    exports: [
         MatButtonModule,
         MatCheckboxModule,
         MatToolbarModule,
@@ -73,9 +75,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
         MatGridListModule,
         MatSortModule,
         MatListModule,
-        MatMenuModule
-        
-        
+        MatMenuModule,
+    
+
+
     ]
 })
 export class MaterialComponentsModule { }

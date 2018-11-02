@@ -4,7 +4,6 @@ export interface Player {
     lastname: string,
     description: string,
     color: string,
-    picturesrc: string,
-    birthday: Date,
-    passwort
+    picturesrc?: string,
+    birthday: Date
 }

@@ -16,7 +16,7 @@ export class GameHistoryComponent implements OnInit {
 
   datasource = new MatTableDataSource<Game>();
 
-  displayedColumns: string[] = ['id', 'name', 'winner', 'points', 'edit'];
+  displayedColumns: string[] = ['number', 'name', 'winner', 'points', 'edit'];
 
   teams: Team[];
 
@@ -50,6 +50,10 @@ export class GameHistoryComponent implements OnInit {
         this.datasource.sort = this.sort;   
       })
     })
+  }
+
+  inspectGame(gameId){
+    console.log(gameId);
   }
  
 }

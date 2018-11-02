@@ -18,6 +18,7 @@ export class TeamsComponent implements OnInit {
 
 
   displayedColumns: string[] = ['name', 'motto', 'memberone', 'membertwo', 'delete'];
+  
   public dataSource = new MatTableDataSource<Team>();
 
   constructor(private dialog: MatDialog, private api: BasicAPI, private teamService: TeamService) { }
@@ -28,13 +29,11 @@ export class TeamsComponent implements OnInit {
 
   getAllteams() {
     this.api.getTeams().subscribe(res => {
-      console.log(JSON.stringify(res));
       this.dataSource.data = res;
       this.dataSource.sort = this.sort;
 
     }, error => {
-      console.log("Error in call 'getTeams'!!! in Team Overview");
-      alert(error);
+  
     });
   }
 

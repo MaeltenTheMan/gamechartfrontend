@@ -1,44 +1,48 @@
 <mat-card class="MatCardParent">
-    <span style="white-space: nowrap; margin-bottom:20px;">
+    <span style="white-space: nowrap; margin-bottom:20px; margin-left: 2px;">
         <h1 style="margin:auto; margin-bottom: 20px;">Spielerkartei </h1>
         <button mat-raised-button color="primary" (click)="createNewPlayer()">Spieler hinzufügen</button>
     </span>
-    <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)" style="margin-top: 20px;"> 
+    <mat-grid-list *ngFor="let player of players" [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)"
+        style="margin-top: 20px;">
         <mat-grid-tile colspan="1">
-            <mat-card>
+            <mat-card class="myMatCards" id="leftCard" [ngStyle]="{'background-color': player?.color | colorbackground: colors}">
                 <mat-card-content>
-                    <img src="../assets/Pictures/esel.jpg" class="pics">
+                    <img src="{{player?.picturesrc}}" class="pics">
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile colspan="1">
-            <p>
-                der name
-            </p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <mat-card>
-                <mat-card-content>
-                    <img src="../assets/Pictures/hai.jpg" class="pics">
-                </mat-card-content>
+            <mat-card class="myMatCards" id="rightCard" [ngStyle]="{'background-color': player?.color | colorbackground: colors }">
+                <mat-list>
+                    <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
+                        <label class="description">Vorname:</label>
+                        <label>{{player?.firstname}}</label>
+                    </mat-list-item>
+                    <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
+                        <label class="description">Nachname:</label>
+                        <label>{{player?.lastname}}</label>
+                    </mat-list-item>
+                    <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
+                        <label class="description">Geburtstag:</label>
+                        <label>{{player?.birthday}}</label>
+                    </mat-list-item>
+                    <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
+                        <label class="description">Siege:</label>
+                        <label>{{player?.wins}}</label>
+                    </mat-list-item>
+                    <mat-list-item style="margin-bottom: 30px" [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
+                        <label class="description">Beschreibung:</label>
+                        <label>{{player?.description}}</label>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <button mat-raised-button color="warn" title="Spieler löschen" (click)="deletePlayer(player.id)"><i
+                                class="material-icons">cancel</i></button>
+                        <button mat-raised-button color="primary" title="Spieler bearbeiten" (click)="editPlayer(player.id)"><i
+                                class="material-icons">build</i></button>
+                    </mat-list-item>
+                </mat-list>
             </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <p>
-                der name
-            </p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <mat-card>
-                <mat-card-content>
-                    <img src="../assets/Pictures/esel.jpg" class="pics">
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <p>
-                der name
-            </p>
         </mat-grid-tile>
     </mat-grid-list>
 </mat-card>

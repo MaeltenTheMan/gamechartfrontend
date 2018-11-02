@@ -9,21 +9,48 @@
 }
 
 .MatCardParent{
-    
     max-width:800px; 
     margin: auto; 
-    margin-top: 15px; 
-    margin-bottom: 40px; 
     background-color: #eee;
-    min-width:420px;
+    min-width:380px;
+    padding: 0;
+    padding-right: 2px;
 }
 
 @media screen and (max-width: 800px){
+
     .MatCardParent{
-        width: 420px;
+        width: 400px;
         margin:auto;
+        padding-right: 2px;
     }
+    .myMatCards{
+        margin-right: 2px;
+    }
+    #rightCard{
+        margin-right: 0px;
+    }
+  
 
 }
+
+
+.description{
+    width:130px; 
+    font-weight: bold;
+    
+}
+:host /deep/ .mat-list-item-content {
+    position: unset;
+    align-items:baseline!important;
+   
+}
+
+.myMatCards{
+    width: 400px; 
+    height: 350px;
+    margin-left: 2px; 
+}
+
 
 

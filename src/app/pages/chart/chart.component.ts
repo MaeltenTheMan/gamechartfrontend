@@ -14,8 +14,6 @@ export class ChartComponent implements OnInit {
 
   teamsPosition;
 
-
-
   displayedColumns: string[] = ['platz', 'name', 'points'];
 
   constructor(private api: BasicAPI) { }
@@ -26,15 +24,15 @@ export class ChartComponent implements OnInit {
   }
 
 
-  getAllteams(){
+  getAllteams() {
     this.api.getTeams().subscribe(res => {
-      const sorted = res.sort((a, b) =>  a.name.localeCompare(b.name));
+      const sorted = res.sort((a, b) => a.name.localeCompare(b.name));
       const secondSort = sorted.sort((a, b) => b.points - a.points);
-      this.dataSource.data = secondSort; 
+      this.dataSource.data = secondSort;
 
     }, error => {
       console.log("Error in call 'getTeams'!!! in Chart")
-    }); 
+    });
   }
 
 

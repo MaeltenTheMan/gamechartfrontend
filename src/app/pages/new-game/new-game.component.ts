@@ -13,28 +13,22 @@ import { Router } from '@angular/router';
 export class NewGameComponent implements OnInit {
   game:Game;
   gameForm: FormGroup;
-
   teams: Team[];
 
   constructor(private fb: FormBuilder, private api: BasicAPI, private router: Router) { }
 
   ngOnInit() {
-    console.log("ngOnInit()")
-    this.newGame();
+     this.newGame();
     this.api.getTeams().subscribe(res =>{
       this.teams = res;
-      console.log(this.teams);
     }, error=>{ console.log(error)})
     
   }
 
   newGame(){
-
     this.gameForm = this.fb.group({
       name: new FormControl("", [
         Validators.required]),
-     /*  points: new FormControl("", [
-        Validators.required]), */
       winner: new FormControl("", [
         Validators.required]),
       second: new FormControl("", [
@@ -45,10 +39,8 @@ export class NewGameComponent implements OnInit {
         Validators.required]),
       fifth: new FormControl("", [
         Validators.required])
-  
     });
   }
-
 
   sendGame(){
     var game = JSON.stringify(this.gameForm.value);

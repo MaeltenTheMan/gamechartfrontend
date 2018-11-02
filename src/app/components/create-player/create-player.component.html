@@ -1,0 +1,37 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>
+      Erstelle einen neuen Spieler
+    </mat-card-title>
+    <form [formGroup]="playerForm" class="formfield">
+      <mat-form-field>
+        <input matInput placeholder="Vorname" formControlName="firstname">
+        <mat-error>Gib deinen Vornamen ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nachname" formControlName="lastname">
+        <mat-error>Gib deinen Nachnamen ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Beschreibung" formControlName="description">
+        <mat-error>Trage eine Beschreibung ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Lieblingsfarbe" formControlName="color">
+          <mat-option *ngFor="let myColor of Mycolors" [value]="myColor.id" [ngStyle]="{'background-color': myColor?.name, 'color': myColor?.charcode}">
+            {{myColor.code}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Geburtstag" formControlName="birthday">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>Geburtstag muss ausgefüllt sein</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="createNewPlayer()" [disabled]="!playerForm.valid" style="margin-top: 10px;">Spieler
+        erstellen</button>
+      <button mat-raised-button color="warn" (click)="close()">Abbrechen</button>
+    </form>
+  </mat-card>
+</mat-dialog-content>

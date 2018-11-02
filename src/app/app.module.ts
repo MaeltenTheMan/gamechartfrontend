@@ -1,3 +1,7 @@
+import { ChangePlayerComponent } from './components/change-player/change-player.component';
+import { ColorBackground } from './pipes/colorbackground.pipe';
+import { FontColorPipe } from './pipes/fontcolor.pipe';
+import { CreatePlayerComponent } from './components/create-player/create-player.component';
 import { PlayerListComponent } from './pages/player-list/player-list.component';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { TeamService } from './services/team.service';
@@ -23,6 +27,10 @@ import { BasicAPI } from './services/basicAPI.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddteamComponent } from './components/addteam/addteam.component';
+import { DatePipe } from '@angular/common';
+import { ColorPickerModule } from 'ngx-color-picker';
+
+
 
 
 
@@ -40,7 +48,11 @@ import { AddteamComponent } from './components/addteam/addteam.component';
     GameHistoryComponent,
     IDToNameConverter,
     EditTeamComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    CreatePlayerComponent,
+    FontColorPipe,
+    ColorBackground,
+    ChangePlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -50,15 +62,19 @@ import { AddteamComponent } from './components/addteam/addteam.component';
     ReactiveFormsModule,
     MaterialComponentsModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ColorPickerModule
 
   ],
   entryComponents: [
     AddteamComponent,
-    EditTeamComponent
+    EditTeamComponent,
+    CreatePlayerComponent,
+    ChangePlayerComponent
   ],
   providers: [
     BasicAPI,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpSpinnerInterceptor,

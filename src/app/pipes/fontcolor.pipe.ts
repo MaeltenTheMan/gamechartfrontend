@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-@Pipe({name: 'idToNameConverter'})
-export class IDToNameConverter implements PipeTransform {
+@Pipe({name: 'fontcolorpipe'})
+export class FontColorPipe implements PipeTransform {
 
     transform(value: number, pipedObject: any){
      
         if(pipedObject.find(x=>x.id === value)!= undefined){
 
-            return pipedObject.find(x=>x.id === value).name;
+            return pipedObject.find(x=>x.id === value).charcode;
 
         } else {
-            return "gelöscht"
+            return "black"
         }   
     }
 }

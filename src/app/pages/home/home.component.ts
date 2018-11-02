@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   getBiggestPoints(){
     this.api.getBiggestPoints().subscribe(res=>{
-      console.log(res);
+
       this.team = res[0];
     });
   }
