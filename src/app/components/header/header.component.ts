@@ -1,3 +1,4 @@
+import { HoldIDService } from './../../services/holdID.service';
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
 
@@ -9,12 +10,20 @@ import { SpinnerService } from '../../services/spinner.service';
 export class HeaderComponent implements OnInit {
   loading: boolean;
 
-  constructor(private spinnerService: SpinnerService) { 
+  wettkampfid: number;
+
+  constructor(private spinnerService: SpinnerService, private holdService: HoldIDService) {
+
+    this.spinnerService.onLoadingChanged.subscribe(isLoading => {
+      
+      this.loading = isLoading;
+      this.wettkampfid = this.holdService.wettkampfID;
     
-    this.spinnerService.onLoadingChanged.subscribe(isLoading => this.loading = isLoading);
+    });
   }
 
   ngOnInit() {
+
   }
 
 }

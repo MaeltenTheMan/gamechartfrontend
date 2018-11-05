@@ -17,9 +17,14 @@ export class CreatePlayerComponent implements OnInit {
 
   Mycolors: Color[];
 
-  constructor(private fb: FormBuilder, private dialog: MatDialogRef<CreatePlayerComponent>, private api: BasicAPI,  @Inject(MAT_DIALOG_DATA) public data: any) { 
-    this.Mycolors = data;
-  }
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialogRef<CreatePlayerComponent>, 
+    private api: BasicAPI,  
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ){ 
+      this.Mycolors = data;
+    }
 
   ngOnInit() {
     this.createPlayerForm();

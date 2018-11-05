@@ -1,0 +1,14 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>
+      Wähle einen Wettkampf
+    </mat-card-title>
+    <mat-list *ngFor="let tournament of tournaments">
+      <mat-list-item class="stripedList">
+        <label style="width: 500px; height: 30px;" [routerLink]="['/home', tournament.id]" (click)="setTournament(tournament.id)">{{tournament?.name}}</label>
+      </mat-list-item>
+    </mat-list>
+    <button mat-raised-button color="primary" style="margin-top: 15px;" (click)="newTournament()">Neuen Wettkampf
+      erstellen</button>
+  </mat-card>
+</mat-dialog-content>

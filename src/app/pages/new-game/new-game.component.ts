@@ -3,7 +3,7 @@ import { Game } from './../../models/Game';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { Team } from '../../models/Team';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-game',
@@ -14,12 +14,23 @@ export class NewGameComponent implements OnInit {
   game:Game;
   gameForm: FormGroup;
   teams: Team[];
+  wettkampfid: number;
 
-  constructor(private fb: FormBuilder, private api: BasicAPI, private router: Router) { }
+  constructor(private fb: FormBuilder, private api: BasicAPI, private router: Router,  private route: ActivatedRoute) { }
+
+ 
+    
+
 
   ngOnInit() {
+
+    this.route.params.subscribe(params=>{
+      this.wettkampfid = +params['wettkampfid'];
+      console.log(this.wettkampfid);
+    })
+
      this.newGame();
-    this.api.getTeams().subscribe(res =>{
+    this.api.getTeams(this.wettkampfid).subscribe(res =>{
       this.teams = res;
     }, error=>{ console.log(error)})
     
@@ -44,8 +55,8 @@ export class NewGameComponent implements OnInit {
 
   sendGame(){
     var game = JSON.stringify(this.gameForm.value);
-    this.api.newGame(game).subscribe(res=> {
-      this.router.navigate(['/chart'])
+    this.api.newGame(game, this.wettkampfid).subscribe(res=> {
+      this.router.navigate(['/chart', this.wettkampfid])
     }, error => {
       console.log(error);
     })

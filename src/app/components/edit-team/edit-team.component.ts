@@ -14,49 +14,45 @@ export class EditTeamComponent implements OnInit {
   onChange = new EventEmitter();
 
   teamForm: FormGroup;
-  
+
+  wettkampfid: number;
+
   constructor(
-    private api : BasicAPI, private dialog: MatDialogRef<EditTeamComponent>, 
-    private fb: FormBuilder,  
+    private api: BasicAPI, private dialog: MatDialogRef<EditTeamComponent>,
+    private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
-    this.createTeamForm(this.data);
+    this.createTeamForm(this.data.team);
     this.dialog.updateSize("400px", "450px");
   }
 
-  createTeamForm(team:Team){
+  createTeamForm(team: Team) {
     this.teamForm = this.fb.group({
       name: new FormControl(team.name, [
         Validators.required]),
       motto: new FormControl(team.motto, [
-        Validators.required]),
-      memberone: new FormControl(team.memberone, [
-        Validators.required]),
-      membertwo: new FormControl(team.membertwo, [
         Validators.required])
-  
     });
   }
 
-  changeTeam(){
-    console.log("das sollte die ID sein" + this.data.id);
-    
-
+  changeTeam() {
     var body: Team = JSON.parse(JSON.stringify(this.teamForm.value));
-    console.log(body);
-    this.api.editTeam(this.data.id, body).subscribe(()=> {
-      this.api.getTeams().subscribe(response => {
+    console.log("das sind die daten");
+    console.log(this.data);
+
+    this.api.editTeam(this.data.team.id, body).subscribe(() => {
+      this.api.getTeams(this.data.wettkampfid).subscribe(response => {
         this.onChange.emit(response);
       });
       this.close();
-    }, error=>{
+    }, error => {
       console.log(error);
     });
   }
 
-  close(){
+  close() {
     this.dialog.close();
   }
 

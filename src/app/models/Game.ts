@@ -1,8 +1,9 @@
 export interface Game{
     id: number;
     name: string;
-    winnerid: number;
     points: number;
+    wettkampfid: number;
+    winnerid: number;
     second: number;
     third: number;
     fourth: number;

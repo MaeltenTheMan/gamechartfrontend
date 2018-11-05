@@ -1,0 +1,19 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>
+      Neuen Wettkampf erstellen
+    </mat-card-title>
+  <form [formGroup]="tournamentForm" class="formfield">
+    <mat-form-field>
+      <input matInput placeholder="Wettkampfname" formControlName="name">
+      <mat-error >Der Wettkampf muss einen namen Haben</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Typ des Wettkampfs" formControlName="typ">
+      <mat-error >Eine Wettkampftyp muss eingetragen sein</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createNewTournament()" [disabled]="!tournamentForm.valid">Wettkampf erstellen</button>
+    <button mat-raised-button color="warn" (click)="close()" >Abbrechen</button>
+  </form>
+</mat-card>
+</mat-dialog-content>

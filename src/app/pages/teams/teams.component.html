@@ -7,18 +7,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Regel</mat-header-cell>
         <mat-cell *matCellDef="let team">{{team.motto}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="memberone">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Spieler 1</mat-header-cell>
-        <mat-cell *matCellDef="let team">{{team.memberone}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="membertwo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Spieler 2</mat-header-cell>
-        <mat-cell *matCellDef="let team">{{team.membertwo}} </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="delete">
         <mat-header-cell *matHeaderCellDef class="heading">Bearbeiten</mat-header-cell>
         <mat-cell *matCellDef="let team">
             <button mat-raised-button color="warn" title="Team löschen" (click)="deleteTeam(team.id)"><i class="material-icons">cancel</i></button>
+            <button mat-raised-button color="primary" title="Spieler hinzufügen" (click)="addPlayerToTeam(team.id)"><i class="material-icons">add_circle</i></button>
             <button mat-raised-button color="primary" title="Team bearbeiten" (click)="changeTeam(team.id)"><i class="material-icons">build</i></button>
         </mat-cell>
     </ng-container>

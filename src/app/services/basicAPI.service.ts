@@ -9,6 +9,7 @@ import {
     HttpResponse, HttpEvent
 } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
+import { Tournament } from '../models/Tournament';
 
 
 @Injectable()
@@ -27,22 +28,21 @@ export class BasicAPI {
     }
 
 
-
     protected basePath = 'http://localhost:8080';
 
     constructor(private http: HttpClient) {
 
     }
     //getting all Teams for Table and teamcontrols
-    getTeams(): Observable<Team[]> {
+    getTeams(wettkampfID: number): Observable<Team[]> {
 
-        return this.http.get<Team[]>(this.basePath + "/getAllTeams");
+        return this.http.get<Team[]>(this.basePath + "/getAllTeams/" + wettkampfID);
     }
 
     //getting all Games for GameHistory and GameControls
-    getGames(): Observable<Game[]> {
+    getGames(wettkampfID: number): Observable<Game[]> {
 
-        return this.http.get<Game[]>(this.basePath + "/getAllGames");
+        return this.http.get<Game[]>(this.basePath + "/getAllGames/" + wettkampfID);
     }
 
     getPlayer(): Observable<Player[]> {
@@ -54,20 +54,29 @@ export class BasicAPI {
         return this.http.get<Color[]>(this.basePath + "/getAllColors");
     }
 
-    createNewTeam(body): Observable<Team> {
+    getTournaments(): Observable<Tournament[]> {
 
-        return this.http.post<Team>(this.basePath + "/createTeam", body, this.options);
+        return this.http.get<Tournament[]>(this.basePath + "/getTournaments");
     }
 
-    createPlayer(body): Observable<Player> {
+    createNewTeam(body, wettkampfID: number): Observable<Team> {
+
+        return this.http.post<Team>(this.basePath + "/createTeam/" + wettkampfID, body, this.options);
+    }
+
+    createPlayer(body: Player): Observable<Player> {
 
         return this.http.post<Player>(this.basePath + "/createPlayer", body, this.options);
     }
 
+    newGame(body, wettkampfID: number): Observable<Game> {
 
-    newGame(body): Observable<Game> {
+        return this.http.post<Game>(this.basePath + "/newGame/" + wettkampfID, body, this.options)
+    }
 
-        return this.http.post<Game>(this.basePath + "/newGame", body, this.options)
+    createTournament(body: Tournament):Observable<Tournament>{
+        
+        return this.http.post<Tournament>(this.basePath + "/createTournament", body, this.options);
     }
 
 
@@ -88,8 +97,8 @@ export class BasicAPI {
     }
 
 
-    getBiggestPoints(): Observable<Team> {
-        return this.http.get<Team>(this.basePath + "/getFirstPlace");
+    getBiggestPoints(wettkampfID): Observable<Team> {
+        return this.http.get<Team>(this.basePath + "/getFirstPlace/" + wettkampfID);
     }
 
 
@@ -112,6 +121,11 @@ export class BasicAPI {
     editTeam(id, body): Observable<Team> {
 
         return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options)
+    }
+
+    addPlayerToTeam(teamID, playerID): Observable<any> {
+        
+        return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID, this.options)
     }
 
 }

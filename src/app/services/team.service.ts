@@ -26,7 +26,7 @@ export class TeamService {
 
     public getAllTeams(): Observable<Array<Team>> {
 
-        this.api.getTeams().take(1).subscribe(result => this.teamsList.next(result));
+        this.api.getTeams(1).take(1).subscribe(result => this.teamsList.next(result));
 
         return this.teamsList.asObservable();
     }

@@ -6,19 +6,11 @@
   <form [formGroup]="teamForm" class="formfield">
     <mat-form-field>
       <input matInput placeholder="Teamname" formControlName="name">
-      <mat-error >muss ausgefüllt sein</mat-error>
+      <mat-error >Es muss ein Teamname angegeben werden</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Teammotto" formControlName="motto">
-      <mat-error >muss ausgefüllt sein</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Spieler 1" formControlName="memberone">
-      <mat-error >muss ausgefüllt sein</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Spieler 2" formControlName="membertwo">
-      <mat-error >muss ausgefüllt sein</mat-error>
+      <input matInput placeholder="Regel" formControlName="motto">
+      <mat-error >Es muss eine Regel angegeben werden</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="createNewTeam()" [disabled]="!teamForm.valid">Team erstellen</button>
     <button mat-raised-button color="warn" (click)="close()" >Abbrechen</button>

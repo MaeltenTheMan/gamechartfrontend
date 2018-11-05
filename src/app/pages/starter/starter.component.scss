@@ -1,0 +1,13 @@
+
+
+.stripedList:nth-child(odd){
+    background-color:#ddd;
+}
+.stripedList:nth-child(even){
+    background-color: #F8F8f8;
+}
+
+label{
+    cursor: pointer;
+}
+

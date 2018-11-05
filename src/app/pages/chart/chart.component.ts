@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Team } from './../../models/Team';
 import { BasicAPI } from './../../services/basicAPI.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,18 +15,29 @@ export class ChartComponent implements OnInit {
 
   teamsPosition;
 
+  wettkampfid : number;
+
   displayedColumns: string[] = ['platz', 'name', 'points'];
 
-  constructor(private api: BasicAPI) { }
+  constructor(private api: BasicAPI, private route: ActivatedRoute ) { }
+
+ 
+    
+
 
   ngOnInit() {
+
+    this.route.params.subscribe(params=>{
+      this.wettkampfid = +params['wettkampfid'];
+      console.log(this.wettkampfid);
+    })
 
     this.getAllteams();
   }
 
 
   getAllteams() {
-    this.api.getTeams().subscribe(res => {
+    this.api.getTeams(this.wettkampfid).subscribe(res => {
       const sorted = res.sort((a, b) => a.name.localeCompare(b.name));
       const secondSort = sorted.sort((a, b) => b.points - a.points);
       this.dataSource.data = secondSort;

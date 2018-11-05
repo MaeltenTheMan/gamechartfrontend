@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TeamService } from './../../services/team.service';
 import { Team } from './../../models/Team';
 import { BasicAPI } from './../../services/basicAPI.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, EventEmitter, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-addteam',
@@ -17,11 +17,19 @@ export class AddteamComponent implements OnInit {
 
   onAdd = new EventEmitter();
 
-  constructor(private fb: FormBuilder,private dialog: MatDialogRef<AddteamComponent>, private api: BasicAPI,private router: Router, private teamService:TeamService) { }
+  wettkampfid: number;
+
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialogRef<AddteamComponent>, 
+    private api: BasicAPI,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    
+    this.wettkampfid = this.data.wettkampfid;
     this.createTeamForm();
-    this.dialog.updateSize("400px", "450px");
+    this.dialog.updateSize("400px", "350px");
   
   }
 
@@ -30,12 +38,7 @@ export class AddteamComponent implements OnInit {
       name: new FormControl("", [
         Validators.required]),
       motto: new FormControl("", [
-        Validators.required]),
-      memberone: new FormControl("", [
-        Validators.required]),
-      membertwo: new FormControl("", [
-        Validators.required])
-  
+        Validators.required]),  
     });
   }
 
@@ -46,9 +49,9 @@ export class AddteamComponent implements OnInit {
   createNewTeam(){
     var body: Team = JSON.parse(JSON.stringify(this.teamForm.value));
 
-    this.api.createNewTeam(body).subscribe(res=> {
+    this.api.createNewTeam(body, this.wettkampfid).subscribe(()=> {
 
-      this.api.getTeams().subscribe(response => {
+      this.api.getTeams(this.wettkampfid).subscribe(response => {
         this.onAdd.emit(response);
       })
          

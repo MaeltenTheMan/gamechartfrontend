@@ -1,9 +1,9 @@
 <div class="navbar">
-  <a class="navButtons" mat-button routerLink='/home' routerLinkActive='active'>Home</a>
-  <a class="navButtons" mat-button routerLink='/player' routerLinkActive='active'>Spielerkartei</a>
-  <a class="navButtons" mat-button routerLink='/teams' routerLinkActive='active'>Teameinstellungen</a>
-  <a class="navButtons" mat-button routerLink='/chart' routerLinkActive='active'>Tabelle</a>
-  <a class="navButtons" mat-button routerLink='/game' routerLinkActive='active'>Neues Spiel</a>
-  <a class="navButtons" mat-button routerLink='/history' routerLinkActive='active'>Spieleliste</a>
+  <a class="navButtons" mat-button [routerLink]="['/home',wettkampfid]">Home</a>
+  <a class="navButtons" mat-button [routerLink]="['/player', wettkampfid]">Spielerkartei</a>
+  <a class="navButtons" mat-button [routerLink]="['/teams', wettkampfid]">Teameinstellungen</a>
+  <a class="navButtons" mat-button [routerLink]="['/chart', wettkampfid]">Tabelle</a>
+  <a class="navButtons" mat-button [routerLink]="['/game', wettkampfid]">Neues Spiel</a>
+  <a class="navButtons" mat-button [routerLink]="['/history', wettkampfid]">Spieleliste</a>
 </div>
 <mat-spinner *ngIf="loading" class="mat-spinner-color" mode="indeterminate"></mat-spinner> 

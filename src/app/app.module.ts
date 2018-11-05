@@ -1,3 +1,6 @@
+import { AddPlayerToTeamComponent } from './components/add-player-to-team/add-player-to-team.component';
+import { NewtournamentComponent } from './components/newtournament/newtournament.component';
+import { StarterComponent } from './pages/starter/starter.component';
 import { ChangePlayerComponent } from './components/change-player/change-player.component';
 import { ColorBackground } from './pipes/colorbackground.pipe';
 import { FontColorPipe } from './pipes/fontcolor.pipe';
@@ -29,9 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddteamComponent } from './components/addteam/addteam.component';
 import { DatePipe } from '@angular/common';
 import { ColorPickerModule } from 'ngx-color-picker';
-
-
-
+import { HoldIDService } from './services/holdID.service';
 
 
 @NgModule({
@@ -52,7 +53,10 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CreatePlayerComponent,
     FontColorPipe,
     ColorBackground,
-    ChangePlayerComponent
+    ChangePlayerComponent,
+    StarterComponent,
+    NewtournamentComponent,
+    AddPlayerToTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
     AddteamComponent,
     EditTeamComponent,
     CreatePlayerComponent,
-    ChangePlayerComponent
+    ChangePlayerComponent,
+    NewtournamentComponent,
+    AddPlayerToTeamComponent
   ],
   providers: [
     BasicAPI,
@@ -81,7 +87,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
       multi: true
     },
     SpinnerService,
-    TeamService
+    TeamService,
+    HoldIDService
   ],
   bootstrap: [AppComponent]
 })

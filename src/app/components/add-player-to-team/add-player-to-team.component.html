@@ -1,0 +1,18 @@
+<mat-card style="margin: 15px">
+  <mat-card-title style="font-weight: bold">
+    Einen Spieler hinzufügen
+  </mat-card-title>
+  <form [formGroup]="playerForm" class="formfield" #formDirective="ngForm">
+    <mat-form-field style="margin-bottom:15px;">
+      <mat-select placeholder="Spieler" formControlName="player">
+        <mat-option *ngFor="let player of players" [value]="player">
+          {{player.firstname}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Es muss ein Erstplatzierter gewählt werden!</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addPlayerToTeam()" [disabled]="!playerForm.valid">Spieler
+      hinzufügen</button>
+    <button mat-raised-button color="warn" (click)="close()">Abbrechen</button>
+  </form>
+</mat-card>
