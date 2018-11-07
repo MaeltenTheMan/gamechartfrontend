@@ -12,7 +12,7 @@
       <input matInput placeholder="Regel" formControlName="motto">
       <mat-error >Es muss eine Regel angegeben werden</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="createNewTeam()" [disabled]="!teamForm.valid">Team erstellen</button>
+    <button mat-raised-button color="primary" style="margin-top: 15px;" (click)="createNewTeam()" [disabled]="!teamForm.valid">Team erstellen</button>
     <button mat-raised-button color="warn" (click)="close()" >Abbrechen</button>
   </form>
 </mat-card>

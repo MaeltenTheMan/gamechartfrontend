@@ -29,7 +29,6 @@ export class ChartComponent implements OnInit {
 
     this.route.params.subscribe(params=>{
       this.wettkampfid = +params['wettkampfid'];
-      console.log(this.wettkampfid);
     })
 
     this.getAllteams();

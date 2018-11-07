@@ -22,6 +22,8 @@
     "@angular/material": "6.0.0-beta.4",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "angular-async-local-storage": "3.1.1",
+    "angular-es6": "^3.2.1",
     "@angular/router": "5.2.9",
     "core-js": "2.4.1",
     "material-community-components": "^3.2.1",

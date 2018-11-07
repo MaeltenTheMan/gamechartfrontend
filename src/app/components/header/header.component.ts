@@ -1,4 +1,5 @@
-import { HoldIDService } from './../../services/holdID.service';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
+
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
 
@@ -12,18 +13,37 @@ export class HeaderComponent implements OnInit {
 
   wettkampfid: number;
 
-  constructor(private spinnerService: SpinnerService, private holdService: HoldIDService) {
+  constructor(private spinnerService: SpinnerService, private localStorage: AsyncLocalStorage) {
+
+    
 
     this.spinnerService.onLoadingChanged.subscribe(isLoading => {
       
+      //while loading true mat-spinner is showing
       this.loading = isLoading;
-      this.wettkampfid = this.holdService.wettkampfID;
+
+      //updating localstorage on every httprequest
+      this.getLocalStorage();
     
     });
   }
 
   ngOnInit() {
+    //on initialisation pulling localstorage to know witch tourney 
+    this.getLocalStorage();
+   
+  }
 
+  getLocalStorage(){
+    this.localStorage.getItem<any>('wettkampfID').subscribe(res=>{
+      if(res!=null){
+        this.wettkampfid = res;
+        
+        //setting default value of 0
+      } else{
+        this.wettkampfid = 0;
+      }
+  });
   }
 
 }

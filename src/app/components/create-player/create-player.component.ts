@@ -28,7 +28,7 @@ export class CreatePlayerComponent implements OnInit {
 
   ngOnInit() {
     this.createPlayerForm();
-    this.dialog.updateSize("400px", "520px");
+    this.dialog.updateSize("400px");
 
   }
 

@@ -1,0 +1,23 @@
+ <mat-dialog-content>
+    <mat-card>
+      <mat-card-title>
+        <label style="font-weight: bold">Team: {{team?.name}}</label>
+      </mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+              <label class="description">Regel</label>
+              <label>{{team.motto}}</label>
+          </mat-list-item>
+        </mat-list>
+        <mat-list *ngFor="let player of players, let i = index">
+          <mat-list-item>
+            <label class="description">Spieler {{i+1}}:</label>
+            <label>{{player?.firstname}} {{player?.lastname}}</label>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <button mat-raised-button color="warn" (click)="close()">Schließen</button>
+    </mat-card>
+  
+  </mat-dialog-content>

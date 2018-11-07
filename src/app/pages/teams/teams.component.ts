@@ -23,15 +23,15 @@ export class TeamsComponent implements OnInit {
   wettkampfid: number;
 
   displayedColumns: string[] = ['name', 'motto', 'delete'];
-  
+
   public dataSource = new MatTableDataSource<Team>();
 
   constructor(private dialog: MatDialog, private api: BasicAPI, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params=>{
+    this.route.params.subscribe(params => {
       this.wettkampfid = +params['wettkampfid'];
-   
+
     })
     this.getAllteams();
   }
@@ -42,18 +42,17 @@ export class TeamsComponent implements OnInit {
       this.dataSource.sort = this.sort;
 
     }, error => {
-  
+
     });
   }
 
   //Öffnen eines Erstellungsdialoges
   newTeam() {
 
-    let data = {wettkampfid: this.wettkampfid};
-    
-    const ref = this.dialog.open(AddteamComponent, { disableClose: true , data: data });
-    ref.componentInstance.onAdd.subscribe(res => {
+    let data = { wettkampfid: this.wettkampfid };
 
+    const ref = this.dialog.open(AddteamComponent, { disableClose: true, data: data });
+    ref.componentInstance.onAdd.subscribe(res => {
       this.dataSource.data = res;
       this.dataSource.sort = this.sort;
 
@@ -75,9 +74,9 @@ export class TeamsComponent implements OnInit {
   changeTeam(teamID) {
     this.api.getTeamByID(teamID).subscribe(response => {
 
-      let data = {wettkampfid : this.wettkampfid, team: response[0]}
+      let data = { wettkampfid: this.wettkampfid, team: response[0] }
 
-      const ref = this.dialog.open(EditTeamComponent, { disableClose: true,data: data});
+      const ref = this.dialog.open(EditTeamComponent, { disableClose: true, data: data });
       ref.componentInstance.onChange.subscribe(res => {
         this.dataSource.data = res;
         this.dataSource.sort = this.sort;
@@ -85,16 +84,17 @@ export class TeamsComponent implements OnInit {
     });
   }
 
-  addPlayerToTeam(teamID){
+  addPlayerToTeam(teamID) {
     this.api.getPlayer().subscribe(response => {
-    
-      let data = {teamID : teamID, players: response}
+
+      let data = { teamID: teamID, players: response }
 
       const ref2 = this.dialog.open(AddPlayerToTeamComponent, { disableClose: true, data: data });
-      ref2.componentInstance.onAdd.subscribe(()=> {
+      ref2.componentInstance.onAdd.subscribe(() => {
 
-    })})
-    
-    
+      })
+    })
+
+
   }
 }

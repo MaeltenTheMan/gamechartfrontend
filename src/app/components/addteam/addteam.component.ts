@@ -29,7 +29,7 @@ export class AddteamComponent implements OnInit {
     
     this.wettkampfid = this.data.wettkampfid;
     this.createTeamForm();
-    this.dialog.updateSize("400px", "350px");
+    this.dialog.updateSize("400px");
   
   }
 

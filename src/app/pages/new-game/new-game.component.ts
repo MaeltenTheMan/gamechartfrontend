@@ -26,7 +26,7 @@ export class NewGameComponent implements OnInit {
 
     this.route.params.subscribe(params=>{
       this.wettkampfid = +params['wettkampfid'];
-      console.log(this.wettkampfid);
+
     })
 
      this.newGame();

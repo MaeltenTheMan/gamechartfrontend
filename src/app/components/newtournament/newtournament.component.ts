@@ -20,7 +20,7 @@ export class NewtournamentComponent implements OnInit {
 
   ngOnInit() {
     this.createTournamentForm();
-    this.dialog.updateSize("400px", "310px");
+    this.dialog.updateSize("400px");
   
   }
 
@@ -37,11 +37,8 @@ export class NewtournamentComponent implements OnInit {
 
   createNewTournament(){
     let body: Tournament = JSON.parse(JSON.stringify(this.tournamentForm.value));
-
-    console.log(body);
     let wurst = new Date();
     
-
     this.api.createTournament(body).subscribe(()=> {
 
       this.api.getTournaments().subscribe(response => {

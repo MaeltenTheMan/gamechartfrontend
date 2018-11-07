@@ -1,27 +1,32 @@
-<mat-table [dataSource]="datasource" matSort>
+<mat-table [dataSource]="datasource">
   <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef class="heading">Spielnummer</mat-header-cell>
     <mat-cell *matCellDef="let game; let i = index">{{i+1}}.</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Name</mat-header-cell>
-    <mat-cell *matCellDef="let game">{{game.name}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Spielname</mat-header-cell>
+    <mat-cell *matCellDef="let game" style="cursor: pointer" (click)="inspectGame(game.id)" title="Spiel untersuchen">{{game.name}}
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="winner">
-    <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Winner</mat-header-cell>
-    <mat-cell *matCellDef="let game">{{game.winnerid | idToNameConverter: teams}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Gewinnerteam</mat-header-cell>
+    <mat-cell *matCellDef="let game" style="cursor: pointer" title="Team untersuchen" (click)="inspectTeam(game.winnerid)">{{game?.winnerid
+      | idToNameConverter: teams}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="points">
-    <mat-header-cell *matHeaderCellDef mat-sort-header class="heading">Punkte</mat-header-cell>
-    <mat-cell *matCellDef="let game">{{game.points}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Punkte</mat-header-cell>
+    <mat-cell *matCellDef="let game" style="cursor: pointer" title="Punkteverteilung: 45/25/15/10/5">{{game.points}}
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="edit">
     <mat-header-cell *matHeaderCellDef class="heading">Bearbeiten</mat-header-cell>
     <mat-cell *matCellDef="let game">
-      <button mat-raised-button color="warn" title="Team löschen" (click)="deleteGame(game.id)"><i class="material-icons">cancel</i></button>
-      <button mat-raised-button color="primary" title="Untersuchen" (click)="inspectGame(game.id)"><i class="material-icons">search</i></button>
+      <button mat-raised-button color="warn" title="Spiel löschen" (click)="deleteGame(game.id)"><i class="material-icons">cancel</i></button>
+      <button mat-raised-button color="primary" title="Spiel bearbeiten" (click)="changeGame(game.id)"><i class="material-icons">build</i></button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+
+<button style="margin-left:15px;" mat-raised-button color="primary">Wettkampf beenden</button>

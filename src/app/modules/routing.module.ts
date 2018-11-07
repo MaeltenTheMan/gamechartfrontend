@@ -12,16 +12,14 @@ import { TeamsComponent } from '../pages/teams/teams.component';
 
 const appRoutes: Routes = [
 
- 
-    { path: 'home/:wettkampfid', component:HomeComponent, pathMatch: 'full'},
-    { path: 'chart/:wettkampfid', component:ChartComponent, pathMatch: 'full'},
-    { path: 'teams/:wettkampfid', component:TeamsComponent, pathMatch: 'full'},
-    { path: 'game/:wettkampfid', component:NewGameComponent, pathMatch: 'full'},
-    { path: 'player/:wettkampfid', component:PlayerListComponent, pathMatch: 'full'},
-    { path: 'history/:wettkampfid', component:GameHistoryComponent, pathMatch: 'full'},
-  /*   { path: 'fullLayout/:wettkampfid', component: FulllayoutComponent, pathMatch: 'full'},*/
-    { path: 'starterComponent', component: StarterComponent, pathMatch: 'full'}, 
-    { path: '',   redirectTo: 'starterComponent', pathMatch: 'full' }
+  { path: 'home', component:HomeComponent, pathMatch: 'full'},
+  { path: 'chart/:wettkampfid', component:ChartComponent, pathMatch: 'full'},
+  { path: 'teams/:wettkampfid', component:TeamsComponent, pathMatch: 'full'},
+  { path: 'game/:wettkampfid', component:NewGameComponent, pathMatch: 'full'},
+  { path: 'player/:wettkampfid', component:PlayerListComponent, pathMatch: 'full'},
+  { path: 'history/:wettkampfid', component:GameHistoryComponent, pathMatch: 'full'},
+  { path: 'start', component: StarterComponent, pathMatch: 'full'},  
+  { path: '',   redirectTo: 'start', pathMatch: 'full' }
 
 ];
 

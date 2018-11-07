@@ -1,9 +1,9 @@
-<mat-card class="MatCardParent">
+<mat-card class="MatCardParent" style="margin-bottom:30px; margin-top: 10px;">
     <span style="white-space: nowrap; margin-bottom:20px; margin-left: 2px;">
         <h1 style="margin:auto; margin-bottom: 20px;">Spielerkartei </h1>
         <button mat-raised-button color="primary" (click)="createNewPlayer()">Spieler hinzufügen</button>
     </span>
-    <mat-grid-list *ngFor="let player of players" [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)"
+    <mat-grid-list *ngFor="let player of players"  [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)"
         style="margin-top: 20px;">
         <mat-grid-tile colspan="1">
             <mat-card class="myMatCards" id="leftCard" [ngStyle]="{'background-color': player?.color | colorbackground: colors}">

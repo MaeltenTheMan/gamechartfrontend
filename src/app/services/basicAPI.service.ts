@@ -104,28 +104,38 @@ export class BasicAPI {
 
     getTeamByID(teamId): Observable<Team> {
 
-        return this.http.get<Team>(this.basePath + "/getTeamByID/" + teamId, this.options)
+        return this.http.get<Team>(this.basePath + "/getTeamByID/" + teamId, this.options);
     }
 
     getPlayerByID(playerId): Observable<Player> {
 
-        return this.http.get<Player>(this.basePath + "/getPlayerByID/" + playerId, this.options)
+        return this.http.get<Player>(this.basePath + "/getPlayerByID/" + playerId, this.options);
     }
 
     editPlayer(id, body): Observable<Player> {
 
-        return this.http.post<Player>(this.basePath + "/editPlayer/" + id, body, this.options)
+        return this.http.post<Player>(this.basePath + "/editPlayer/" + id, body, this.options);
     }
 
 
     editTeam(id, body): Observable<Team> {
 
-        return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options)
+        return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options);
     }
 
     addPlayerToTeam(teamID, playerID): Observable<any> {
         
-        return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID, this.options)
+        return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID, this.options);
+    }
+
+    getPlayerOfTeam(teamID): Observable<Player[]>{
+
+        return this.http.get<Player[]>(this.basePath + "/getPlayerOfTeam/" + teamID, this.options);
+    }
+
+
+    getTournamentByID(wettkampfID): Observable<Tournament>{
+        return this.http.get<Tournament>(this.basePath + "/getTournamentByID/" + wettkampfID, this.options);
     }
 
 }

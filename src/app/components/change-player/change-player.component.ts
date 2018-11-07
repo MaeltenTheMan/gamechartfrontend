@@ -30,7 +30,7 @@ export class ChangePlayerComponent implements OnInit {
     this.Mycolors = this.data.colors;
 
     this.changePlayerForm(this.data.player);
-    this.dialog.updateSize("400px", "520px");
+    this.dialog.updateSize("400px");
   }
 
   changePlayerForm(player: Player) {

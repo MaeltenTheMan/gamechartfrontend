@@ -1,4 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
+import { Tournament } from './../../models/Tournament';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { BasicAPI } from './../../services/basicAPI.service';
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../../models/Team';
@@ -10,24 +11,33 @@ import { Team } from '../../models/Team';
 })
 export class HomeComponent implements OnInit {
 
-  team:Team;
-  wettkampfid: number;
- 
-  constructor(private api: BasicAPI,  private route: ActivatedRoute) { }
+  team: Team;
+  wettkampf: Tournament;
+
+  constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage) { }
 
   ngOnInit() {
+    this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
 
-    this.route.params.subscribe(params=>{
-      this.wettkampfid = +params['wettkampfid'];
-      console.log("meine id" + this.wettkampfid);
-      this.getBiggestPoints(this.wettkampfid);
-    })
-   
-    
-  } 
+      this.getBiggestPoints(res);
+      this.getWettkampf(res);
+    });
 
-  getBiggestPoints(id){
-    this.api.getBiggestPoints(id).subscribe(res=>{
+
+  }
+
+
+  getWettkampf(wettkampfID) {
+
+    this.api.getTournamentByID(wettkampfID).subscribe(res => {
+
+      this.wettkampf = res[0];
+    });
+  }
+
+  getBiggestPoints(id) {
+
+    this.api.getBiggestPoints(id).subscribe(res => {
 
       this.team = res[0];
     });

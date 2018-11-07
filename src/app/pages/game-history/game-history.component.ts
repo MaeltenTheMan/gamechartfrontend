@@ -1,10 +1,12 @@
+import { InspectTeamComponent } from './../../components/inspect-team/inspect-team.component';
+import { InspectGameComponent } from './../../components/inspect-game/inspect-game.component';
 import { ActivatedRoute } from '@angular/router';
 import { Team } from './../../models/Team';
 import { FormBuilder } from '@angular/forms';
 import { Game } from './../../models/Game';
 import { BasicAPI } from './../../services/basicAPI.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-game-history',
@@ -22,8 +24,9 @@ export class GameHistoryComponent implements OnInit {
   displayedColumns: string[] = ['number', 'name', 'winner', 'points', 'edit'];
 
   teams: Team[];
+  games: Game[];
 
-  constructor(private api: BasicAPI, private fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private api: BasicAPI, private fb: FormBuilder, private route: ActivatedRoute, private dialog: MatDialog) { }
 
 
   ngOnInit() {
@@ -40,7 +43,8 @@ export class GameHistoryComponent implements OnInit {
 
   getAllGames() {
     this.api.getGames(this.wettkampfid).subscribe(res => {
-      this.datasource.data = res;
+      this.games = res;
+      this.datasource.data = this.games;
       this.datasource.sort = this.sort;
     });
   }
@@ -52,7 +56,7 @@ export class GameHistoryComponent implements OnInit {
   }
 
   deleteGame(gameId) {
-    this.api.deleteGameByID(gameId).subscribe(res => {
+    this.api.deleteGameByID(gameId).subscribe(() => {
       this.api.getGames(this.wettkampfid).subscribe(response => {
         this.datasource.data = response;;
         this.datasource.sort = this.sort;
@@ -60,8 +64,22 @@ export class GameHistoryComponent implements OnInit {
     })
   }
 
-  inspectGame(gameId) {
-    console.log(gameId);
+  inspectGame(gameID) {
+
+    let data = { game : this.games.find(x=>x.id === gameID), teams: this.teams}  
+    this.dialog.open(InspectGameComponent, { disableClose: true , data: data });
+  }
+
+  inspectTeam(teamID){
+    this.api.getPlayerOfTeam(teamID).subscribe(res=>{
+      let data = { team: this.teams.find(x=>x.id === teamID), players: res}
+      this.dialog.open(InspectTeamComponent, { disableClose: true , data: data } )
+    })
+
+  }
+
+  changeGame(){
+
   }
 
 }

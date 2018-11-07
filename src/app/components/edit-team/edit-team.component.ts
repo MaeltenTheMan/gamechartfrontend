@@ -25,7 +25,7 @@ export class EditTeamComponent implements OnInit {
 
   ngOnInit() {
     this.createTeamForm(this.data.team);
-    this.dialog.updateSize("400px", "450px");
+    this.dialog.updateSize("400px");
   }
 
   createTeamForm(team: Team) {
@@ -39,9 +39,6 @@ export class EditTeamComponent implements OnInit {
 
   changeTeam() {
     var body: Team = JSON.parse(JSON.stringify(this.teamForm.value));
-    console.log("das sind die daten");
-    console.log(this.data);
-
     this.api.editTeam(this.data.team.id, body).subscribe(() => {
       this.api.getTeams(this.data.wettkampfid).subscribe(response => {
         this.onChange.emit(response);

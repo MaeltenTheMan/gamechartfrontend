@@ -25,11 +25,8 @@ export class AddPlayerToTeamComponent implements OnInit {
 
   ngOnInit() {
     this.players = this.data.players;
-    console.log(this.players);
-    
-
     this.addPlayerToTeamForm();
-    this.dialog.updateSize("500px", "310px");
+    this.dialog.updateSize("500px");
 
   }
 
