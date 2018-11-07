@@ -1,12 +1,18 @@
+<div class="navbar">
+   <h1 style="color: white; padding-left: 20px; padding-top: 10px;">Wähle einen Wettkampf aus</h1>
+  </div>
 <mat-card>
-  <mat-form-field>
-    <mat-select [(value)]="selectedUser" placeholder="Authentication">
-      <mat-option value="user">user</mat-option>
-      <mat-option value="admin">admin</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-card-subtitle>
+      <mat-form-field >
+          <mat-select [(value)]="selectedUser" placeholder="Authentication">
+            <mat-option value="user">user</mat-option>
+            <mat-option value="admin">admin</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </mat-card-subtitle>
+  
   <mat-card-title>
-    Wähle einen Wettkampf
+    Aktive Wettkämpfe
   </mat-card-title>
   <mat-list *ngFor="let tournament of tournaments">
     <mat-list-item class="stripedList">
