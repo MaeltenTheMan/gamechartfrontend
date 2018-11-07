@@ -1,9 +1,10 @@
-<div class="navbar">
+<div *ngIf="wettkampfid!=0" class="navbar">
   <a class="navButtons" mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
   <a class="navButtons" mat-button [routerLink]="['/player', wettkampfid]" routerLinkActive="active">Spielerkartei</a>
   <a class="navButtons" mat-button [routerLink]="['/teams', wettkampfid]" routerLinkActive="active">Teamverwaltung</a>
-  <a class="navButtons" mat-button [routerLink]="['/game', wettkampfid]" routerLinkActive="active">Neues Spiel</a>
+  <a *ngIf="this.user==='admin'" class="navButtons" mat-button [routerLink]="['/game', wettkampfid]" routerLinkActive="active">Neues Spiel</a>
   <a class="navButtons" mat-button [routerLink]="['/chart', wettkampfid]" routerLinkActive="active">Tabelle</a>
-  <a class="navButtons" mat-button [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
+  <a *ngIf="this.user==='admin'" class="navButtons" mat-button [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
+  <a class="navButtons" style="float:right;" mat-button (click)="navigateStart()">Abmelden</a>
 </div>
-<mat-spinner *ngIf="loading" class="mat-spinner-color" mode="indeterminate"></mat-spinner> 
+<mat-spinner *ngIf="loading" class="mat-spinner-color" mode="indeterminate"></mat-spinner>

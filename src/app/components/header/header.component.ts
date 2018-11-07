@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 import { Component, OnInit } from '@angular/core';
@@ -13,37 +14,64 @@ export class HeaderComponent implements OnInit {
 
   wettkampfid: number;
 
-  constructor(private spinnerService: SpinnerService, private localStorage: AsyncLocalStorage) {
+  user: string;
 
-    
+  constructor(private spinnerService: SpinnerService, private localStorage: AsyncLocalStorage, private router: Router) {
+
+
 
     this.spinnerService.onLoadingChanged.subscribe(isLoading => {
-      
+
       //while loading true mat-spinner is showing
       this.loading = isLoading;
 
       //updating localstorage on every httprequest
-      this.getLocalStorage();
-    
+      this.getLocalStorageWKID();
+      this.getLocalStorageAuthentication();
+
     });
   }
 
   ngOnInit() {
     //on initialisation pulling localstorage to know witch tourney 
-    this.getLocalStorage();
-   
+    this.getLocalStorageWKID();
+    this.getLocalStorageAuthentication();
+
   }
 
-  getLocalStorage(){
-    this.localStorage.getItem<any>('wettkampfID').subscribe(res=>{
-      if(res!=null){
+  getLocalStorageWKID() {
+    this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
+      if (res != null) {
         this.wettkampfid = res;
-        
+
         //setting default value of 0
-      } else{
+      } else {
         this.wettkampfid = 0;
       }
-  });
+    });
+
   }
+
+  getLocalStorageAuthentication() {
+
+    this.localStorage.getItem<any>('Authentication').subscribe(res => {
+
+      if (res != null) {
+        this.user = res;
+
+        //setting default value to undefined
+      } else {
+        this.user = undefined;
+      }
+    });
+  }
+
+  navigateStart() {
+    this.wettkampfid = 0;
+    this.localStorage.setItem('wettkampfID', this.wettkampfid).subscribe(() => {
+      this.router.navigate(['/start']);
+    });
+  }
+
 
 }

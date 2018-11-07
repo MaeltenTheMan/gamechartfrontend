@@ -46,12 +46,16 @@ export class GameHistoryComponent implements OnInit {
       this.games = res;
       this.datasource.data = this.games;
       this.datasource.sort = this.sort;
+    },  error => {
+      alert(error.error);
     });
   }
 
   getAllTeams() {
     this.api.getTeams(this.wettkampfid).subscribe(res => {
       this.teams = res;
+    },  error => {
+      alert(error.error);
     });
   }
 
@@ -60,26 +64,34 @@ export class GameHistoryComponent implements OnInit {
       this.api.getGames(this.wettkampfid).subscribe(response => {
         this.datasource.data = response;;
         this.datasource.sort = this.sort;
-      })
-    })
+      });
+    },  error => {
+      alert(error.error);
+    });
   }
 
   inspectGame(gameID) {
 
-    let data = { game : this.games.find(x=>x.id === gameID), teams: this.teams}  
-    this.dialog.open(InspectGameComponent, { disableClose: true , data: data });
+    let data = { game: this.games.find(x => x.id === gameID), teams: this.teams }
+    this.dialog.open(InspectGameComponent, { disableClose: true, data: data });
   }
 
-  inspectTeam(teamID){
-    this.api.getPlayerOfTeam(teamID).subscribe(res=>{
-      let data = { team: this.teams.find(x=>x.id === teamID), players: res}
-      this.dialog.open(InspectTeamComponent, { disableClose: true , data: data } )
+  inspectTeam(teamID) {
+    this.api.getPlayerOfTeam(teamID).subscribe(res => {
+      let data = { team: this.teams.find(x => x.id === teamID), players: res }
+      this.dialog.open(InspectTeamComponent, { disableClose: true, data: data })
+    },  error => {
+      alert(error.error);
     })
 
   }
 
-  changeGame(){
+  changeGame(id) {
+    alert("Diese Funktion muss noch eingefügt werden!");
+  }
 
+  endTourney() {
+    alert("Diese Funktion muss noch eingefügt werden!");
   }
 
 }

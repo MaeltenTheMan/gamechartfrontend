@@ -7,7 +7,7 @@
         <mat-list>
           <mat-list-item>
               <label class="description">Regel</label>
-              <label>{{team.motto}}</label>
+              <label>{{team?.motto}}</label>
           </mat-list-item>
         </mat-list>
         <mat-list *ngFor="let player of players, let i = index">

@@ -6,15 +6,14 @@
     <form [formGroup]="teamForm" class="formfield">
       <mat-form-field>
         <input matInput placeholder="Teamname" formControlName="name">
-        <mat-error >muss ausgefüllt sein</mat-error>
+        <mat-error>Ein Teamname muss eingetragen werden</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Teammotto" formControlName="motto">
-        <mat-error >muss ausgefüllt sein</mat-error>
+        <input matInput placeholder="Teamregel" formControlName="motto">
+        <mat-error>Eine Regel des Teams muss eingetragen werden</mat-error>
       </mat-form-field>
-
       <button mat-raised-button color="primary" (click)="changeTeam()" [disabled]="!teamForm.valid">Team bearbeiten</button>
-      <button mat-raised-button color="warn" (click)="close()" >Abbrechen</button>
+      <button mat-raised-button color="warn" (click)="close()">Abbrechen</button>
     </form>
   </mat-card>
 </mat-dialog-content>

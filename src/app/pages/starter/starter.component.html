@@ -1,14 +1,18 @@
-<mat-dialog-content>
-  <mat-card>
-    <mat-card-title>
-      Wähle einen Wettkampf
-    </mat-card-title>
-    <mat-list *ngFor="let tournament of tournaments">
-      <mat-list-item class="stripedList">
-        <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id)">{{tournament?.name}}</label>
-      </mat-list-item>
-    </mat-list>
-    <button mat-raised-button color="primary" style="margin-top: 15px;" (click)="newTournament()">Neuen Wettkampf
-      erstellen</button>
-  </mat-card>
-</mat-dialog-content>
+<mat-card>
+  <mat-form-field>
+    <mat-select [(value)]="selectedUser" placeholder="Authentication">
+      <mat-option value="user">user</mat-option>
+      <mat-option value="admin">admin</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-card-title>
+    Wähle einen Wettkampf
+  </mat-card-title>
+  <mat-list *ngFor="let tournament of tournaments">
+    <mat-list-item class="stripedList">
+      <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id)">{{tournament?.name}}</label>
+    </mat-list-item>
+  </mat-list>
+  <button mat-raised-button color="primary" style="margin-top: 15px;" (click)="newTournament()">Neuen Wettkampf
+    erstellen</button>
+</mat-card>

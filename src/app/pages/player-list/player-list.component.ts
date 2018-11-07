@@ -25,20 +25,22 @@ export class PlayerListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.breakpoint = (window.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint = (window.innerWidth <= 830) ? 1 : 2;
     this.getAllColors();
     this.getAllPlayer();
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth <= 830) ? 1 : 2;
   }
 
   getAllPlayer() {
     this.api.getPlayer().subscribe(res => {
       this.players = res;
 
-    })
+    },  error => {
+      alert(error.error);
+    });
   }
 
   createNewPlayer() {
@@ -47,27 +49,37 @@ export class PlayerListComponent implements OnInit {
 
       this.players = res;
 
+    },  error => {
+      alert(error.error);
     });
   }
 
   getColors() {
     this.api.getColors().subscribe(res => {
       this.colors = res;
-    })
+    },  error => {
+      alert(error.error);
+    });
   }
 
   deletePlayer(playerId) {
-    this.api.deletePlayerByID(playerId).subscribe(() => {
-      this.api.getPlayer().subscribe(res => {
-        this.players = res;
-      })
-    })
+    this.api.deletePlayerByID(playerId).subscribe(res => {
+
+      let removeIndex = this.players.map(item => { return item.id; }).indexOf(res.id);
+
+      this.players.splice(removeIndex, 1);
+
+    }, error => {
+      alert(error.error);
+    });
   }
 
   getAllColors() {
     this.api.getColors().subscribe(res => {
       this.colors = res;
-    })
+    },  error => {
+      alert(error.error);
+    });
   }
 
   editPlayer(playerID) {
@@ -82,6 +94,8 @@ export class PlayerListComponent implements OnInit {
       ref2.componentInstance.onChange.subscribe(res => {
         this.players = res;
       });
+    } , error => {
+      alert(error.error);
     });
   }
 }

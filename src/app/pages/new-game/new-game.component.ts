@@ -57,8 +57,8 @@ export class NewGameComponent implements OnInit {
     var game = JSON.stringify(this.gameForm.value);
     this.api.newGame(game, this.wettkampfid).subscribe(res=> {
       this.router.navigate(['/chart', this.wettkampfid])
-    }, error => {
-      console.log(error);
+    },  error => {
+      alert(error.error);
     })
   }
 

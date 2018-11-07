@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
     this.api.getTournamentByID(wettkampfID).subscribe(res => {
 
       this.wettkampf = res[0];
+    },  error => {
+      alert(error.error);
     });
   }
 
@@ -40,6 +42,8 @@ export class HomeComponent implements OnInit {
     this.api.getBiggestPoints(id).subscribe(res => {
 
       this.team = res[0];
+    },  error => {
+      alert(error.error);
     });
   }
 

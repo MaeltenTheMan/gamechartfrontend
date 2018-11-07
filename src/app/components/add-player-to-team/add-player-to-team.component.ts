@@ -49,8 +49,8 @@ export class AddPlayerToTeamComponent implements OnInit {
 
       this.close();
       
-    }, error => {
-      console.log(error);
+    },  error => {
+      alert(error.error);
     });
 
 

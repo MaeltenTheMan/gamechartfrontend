@@ -56,8 +56,8 @@ export class ChangePlayerComponent implements OnInit {
         this.onChange.emit(response);
       });
       this.close();
-    }, error => {
-      console.log(error);
+    },  error => {
+      alert(error.error);
     });
   }
 

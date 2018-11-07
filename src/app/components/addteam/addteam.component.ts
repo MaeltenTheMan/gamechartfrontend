@@ -49,15 +49,12 @@ export class AddteamComponent implements OnInit {
   createNewTeam(){
     var body: Team = JSON.parse(JSON.stringify(this.teamForm.value));
 
-    this.api.createNewTeam(body, this.wettkampfid).subscribe(()=> {
-
-      this.api.getTeams(this.wettkampfid).subscribe(response => {
-        this.onAdd.emit(response);
-      })
-         
+    this.api.createNewTeam(body, this.wettkampfid).subscribe(res=> {
+      this.onAdd.emit(res);
+               
       this.close();
-    }, error=>{
-      console.log(error);
+    },  error => {
+      alert(error.error);
     });
 
     

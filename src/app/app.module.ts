@@ -1,3 +1,4 @@
+import { HeaderInterceptor } from './services/header.interceptor.service';
 //modules
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './modules/routing.module';
@@ -104,6 +105,14 @@ import { IDToNameConverter } from './pipes/idtoname.pipe';
       useClass: HttpSpinnerInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true
+    },
+
+    
+
     SpinnerService,
     TeamService
   ],

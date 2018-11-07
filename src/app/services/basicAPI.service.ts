@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Color } from './../models/Color';
 import { Player } from './../models/Player';
 import { Game } from './../models/Game';
@@ -15,11 +16,14 @@ import { Tournament } from '../models/Tournament';
 @Injectable()
 export class BasicAPI {
 
-    public defaultHeaders = new HttpHeaders();
+
 
     public httpHeaders = new HttpHeaders({
         "Content-Type": 'application/json',
+        
+
     });
+
 
     public options = {
 
@@ -30,13 +34,19 @@ export class BasicAPI {
 
     protected basePath = 'http://localhost:8080';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private localStorage: AsyncLocalStorage) {
+
+
 
     }
     //getting all Teams for Table and teamcontrols
     getTeams(wettkampfID: number): Observable<Team[]> {
+     
+        
 
-        return this.http.get<Team[]>(this.basePath + "/getAllTeams/" + wettkampfID);
+
+        return this.http.get<Team[]>(this.basePath + "/getAllTeams/" + wettkampfID, this.options);
+       
     }
 
     //getting all Games for GameHistory and GameControls
@@ -74,8 +84,8 @@ export class BasicAPI {
         return this.http.post<Game>(this.basePath + "/newGame/" + wettkampfID, body, this.options)
     }
 
-    createTournament(body: Tournament):Observable<Tournament>{
-        
+    createTournament(body: Tournament): Observable<Tournament> {
+
         return this.http.post<Tournament>(this.basePath + "/createTournament", body, this.options);
     }
 
@@ -85,7 +95,7 @@ export class BasicAPI {
         return this.http.delete<Team>(this.basePath + "/deleteTeamById/" + teamId, this.options);
     }
 
-    deletePlayerByID(playerID: number): Observable<Player>{
+    deletePlayerByID(playerID: number): Observable<Player> {
 
         return this.http.delete<Player>(this.basePath + "/deletePlayerById/" + playerID, this.options);
     }
@@ -124,17 +134,17 @@ export class BasicAPI {
     }
 
     addPlayerToTeam(teamID, playerID): Observable<any> {
-        
+
         return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID, this.options);
     }
 
-    getPlayerOfTeam(teamID): Observable<Player[]>{
+    getPlayerOfTeam(teamID): Observable<Player[]> {
 
         return this.http.get<Player[]>(this.basePath + "/getPlayerOfTeam/" + teamID, this.options);
     }
 
 
-    getTournamentByID(wettkampfID): Observable<Tournament>{
+    getTournamentByID(wettkampfID): Observable<Tournament> {
         return this.http.get<Tournament>(this.basePath + "/getTournamentByID/" + wettkampfID, this.options);
     }
 

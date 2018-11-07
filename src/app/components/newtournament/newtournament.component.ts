@@ -16,45 +16,41 @@ export class NewtournamentComponent implements OnInit {
 
   onAdd = new EventEmitter();
 
-  constructor( private fb: FormBuilder,private dialog: MatDialogRef<NewtournamentComponent>, private api: BasicAPI, ) { }
+  constructor(private fb: FormBuilder, private dialog: MatDialogRef<NewtournamentComponent>, private api: BasicAPI, ) { }
 
   ngOnInit() {
     this.createTournamentForm();
     this.dialog.updateSize("400px");
-  
+
   }
 
-  createTournamentForm(){
+  createTournamentForm() {
     this.tournamentForm = this.fb.group({
       name: new FormControl("", [
         Validators.required]),
       typ: new FormControl("", [
         Validators.required])
-     
+
     });
   }
 
 
-  createNewTournament(){
+  createNewTournament() {
     let body: Tournament = JSON.parse(JSON.stringify(this.tournamentForm.value));
-    let wurst = new Date();
-    
-    this.api.createTournament(body).subscribe(()=> {
 
-      this.api.getTournaments().subscribe(response => {
-        
-        this.onAdd.emit(response);
-      })
-         
+    this.api.createTournament(body).subscribe(res => {
+
+      this.onAdd.emit(res);
+
       this.close();
-    }, error=>{
-      console.log(error);
+    },  error => {
+      alert(error.error);
     });
 
-    
+
   }
 
-  close(){
+  close() {
     this.dialog.close();
   }
 }

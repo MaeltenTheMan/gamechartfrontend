@@ -62,8 +62,8 @@ export class CreatePlayerComponent implements OnInit {
         })
 
         this.close();
-      }, error => {
-        console.log(error);
+      },  error => {
+        alert(error.error);
       }); 
 
 

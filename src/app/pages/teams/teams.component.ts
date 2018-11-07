@@ -42,6 +42,7 @@ export class TeamsComponent implements OnInit {
       this.dataSource.sort = this.sort;
 
     }, error => {
+      console.log(error);
 
     });
   }
@@ -53,21 +54,22 @@ export class TeamsComponent implements OnInit {
 
     const ref = this.dialog.open(AddteamComponent, { disableClose: true, data: data });
     ref.componentInstance.onAdd.subscribe(res => {
-      this.dataSource.data = res;
+    
+      this.dataSource.data.push(res);
       this.dataSource.sort = this.sort;
 
     });
   }
 
-
+  //TODO: in ein BEHAVIOR SUBJECT umwandeln damit die DataSource nicht komplett neu geladen werden muss
   deleteTeam(teamID) {
-    this.api.deleteTeamByID(teamID).subscribe(res => {
+    this.api.deleteTeamByID(teamID).subscribe(() => {
       this.api.getTeams(this.wettkampfid).subscribe(response => {
         this.dataSource.data = response;
       })
 
-    }, error => {
-      throw error;
+    },  error => {
+      alert(error.error);
     });
   }
 
@@ -81,6 +83,8 @@ export class TeamsComponent implements OnInit {
         this.dataSource.data = res;
         this.dataSource.sort = this.sort;
       });
+    } ,  error => {
+      alert(error.error);
     });
   }
 
@@ -93,6 +97,8 @@ export class TeamsComponent implements OnInit {
       ref2.componentInstance.onAdd.subscribe(() => {
 
       })
+    },  error => {
+      alert(error.error);
     })
 
 

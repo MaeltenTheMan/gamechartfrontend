@@ -41,8 +41,8 @@ export class ChartComponent implements OnInit {
       const secondSort = sorted.sort((a, b) => b.points - a.points);
       this.dataSource.data = secondSort;
 
-    }, error => {
-      console.log("Error in call 'getTeams'!!! in Chart")
+    },  error => {
+      alert(error.error);
     });
   }
 
