@@ -1,0 +1,121 @@
+[
+    {
+        "id": 1,
+        "name": "Yellow",
+        "code": "#FFFF00",
+        "charcode": "#000000"
+    },
+    {
+        "id": 2,
+        "name": "Aqua",
+        "code": "#00FFFF",
+        "charcode": "#000000"
+    },
+    {
+        "id": 3,
+        "name": "Khaki",
+        "code": "#F0E68C",
+        "charcode": "#000000"
+    },
+    {
+        "id": 4,
+        "name": "YellowGreen",
+        "code": "#9ACD32",
+        "charcode": "#000000"
+    },
+    {
+        "id": 5,
+        "name": "GreenYellow",
+        "code": "#ADFF2F",
+        "charcode": "#000000"
+    },
+    {
+        "id": 6,
+        "name": "Pink",
+        "code": "#FFC0CB",
+        "charcode": "#000000"
+    },
+    {
+        "id": 7,
+        "name": "FireBrick",
+        "code": "#B22222",
+        "charcode": "#FFFFFF"
+    },
+    {
+        "id": 8,
+        "name": "BlueViolet",
+        "code": "#8A2BE2",
+        "charcode": "#DDDDDD"
+    },
+    {
+        "id": 9,
+        "name": "Indigo",
+        "code": "#4B0082",
+        "charcode": "#DDDDDD"
+    },
+    {
+        "id": 10,
+        "name": "DarkBlue",
+        "code": "#00008B",
+        "charcode": "#FFFFFF"
+    },
+    {
+        "id": 11,
+        "name": "Coral",
+        "code": "#FF7F50",
+        "charcode": "#DDDDDD"
+    },
+    {
+        "id": 12,
+        "name": "Cornflowerblue",
+        "code": "#6495ED",
+        "charcode": "#111111"
+    },
+    {
+        "id": 13,
+        "name": "Darkkhaki",
+        "code": "#BDB76B",
+        "charcode": "#000000"
+    },
+    {
+        "id": 14,
+        "name": "Tomato",
+        "code": "#FF6347",
+        "charcode": "#111111"
+    },
+    {
+        "id": 15,
+        "name": "Springgreen",
+        "code": "#00FF7F",
+        "charcode": "#000000"
+    },
+    {
+        "id": 16,
+        "name": "Palegreen",
+        "code": "#98FB98",
+        "charcode": "#000000"
+    },
+    {
+        "id": 17,
+        "name": "Paleturquoise",
+        "code": "#AFEEEE",
+        "charcode": "#000000"
+    },
+    {
+        "id": 18,
+        "name": "Orange",
+        "code": "#FFA500",
+        "charcode": "#444444"
+    },
+    {
+        "id": 19,
+        "name": "Plum",
+        "code": "#DDA0DD",
+        "charcode": "#000000"
+    },
+    {
+        "id": 20,
+        "name": "RebeccaPurple",
+        "code": "#663399",
+        "charcode": "#FFFFFF"
+    }]

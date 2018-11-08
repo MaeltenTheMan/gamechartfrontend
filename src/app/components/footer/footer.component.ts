@@ -15,23 +15,25 @@ export class FooterComponent implements OnInit {
 
   wettkampfid;
 
-  constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage) { 
+  constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage) {
   }
 
   ngOnInit() {
-    this.getLocalStorage();  
+    this.getLocalStorage();
   }
 
   getBiggestPoints(id) {
     this.api.getBiggestPoints(id).subscribe(res => {
       this.team = res[0];
+    }, error => {
+      alert(error.status + " " + error.statusText);
     });
   }
 
-  getLocalStorage(){
-    this.localStorage.getItem<any>('wettkampfID').subscribe(res=>{
+  getLocalStorage() {
+    this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
       this.wettkampfid = res;
       this.getBiggestPoints(this.wettkampfid);
-  });
+    });
   }
 }

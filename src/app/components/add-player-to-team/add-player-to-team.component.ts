@@ -15,12 +15,12 @@ export class AddPlayerToTeamComponent implements OnInit {
 
   onAdd = new EventEmitter();
 
-  players : Player[];
+  players: Player[];
 
   constructor(
-    private fb: FormBuilder, 
-    private dialog: MatDialogRef<AddPlayerToTeamComponent>, 
-    private api: BasicAPI,  
+    private fb: FormBuilder,
+    private dialog: MatDialogRef<AddPlayerToTeamComponent>,
+    private api: BasicAPI,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -34,23 +34,23 @@ export class AddPlayerToTeamComponent implements OnInit {
     this.playerForm = this.fb.group({
       player: new FormControl("", [
         Validators.required]),
-    
+
     });
   }
 
 
   addPlayerToTeam() {
 
-    let body = this.playerForm.value;
-    
+    console.log(this.data);
 
+    let body = this.playerForm.value;
 
     this.api.addPlayerToTeam(this.data.teamID, body.player.id).subscribe(() => {
 
       this.close();
-      
-    },  error => {
-      alert(error.error);
+
+    }, error => {
+      alert(error.status + " " + error.statusText);
     });
 
 

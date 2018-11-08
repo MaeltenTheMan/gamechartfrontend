@@ -39,7 +39,7 @@ export class PlayerListComponent implements OnInit {
       this.players = res;
 
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 
@@ -50,15 +50,7 @@ export class PlayerListComponent implements OnInit {
       this.players = res;
 
     },  error => {
-      alert(error.error);
-    });
-  }
-
-  getColors() {
-    this.api.getColors().subscribe(res => {
-      this.colors = res;
-    },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 
@@ -77,8 +69,9 @@ export class PlayerListComponent implements OnInit {
   getAllColors() {
     this.api.getColors().subscribe(res => {
       this.colors = res;
+     
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 

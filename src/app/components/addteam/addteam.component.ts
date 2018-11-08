@@ -54,7 +54,7 @@ export class AddteamComponent implements OnInit {
                
       this.close();
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
 
     

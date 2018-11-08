@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
       this.wettkampf = res[0];
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
       this.team = res[0];
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 

@@ -1,5 +1,9 @@
 <div class="navbar">
-   <h1 style="color: white; padding-left: 20px; padding-top: 10px;">Wähle einen Wettkampf aus</h1>
+  <div style="padding-top: 13px;">
+   <label style="color: white; padding-left: 20px; font-size: 27px;">Wähle einen Wettkampf aus</label>
+    <button mat-raised-button color="primary" style="float:right; z-index: 991;  margin-right: 10px;" (click)="newTournament()">Neuen Wettkampf
+      erstellen</button>
+    </div>
   </div>
 <mat-card>
   <mat-card-subtitle>
@@ -10,7 +14,6 @@
           </mat-select>
         </mat-form-field>
   </mat-card-subtitle>
-  
   <mat-card-title>
     Aktive Wettkämpfe
   </mat-card-title>
@@ -19,6 +22,7 @@
       <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id)">{{tournament?.name}}</label>
     </mat-list-item>
   </mat-list>
-  <button mat-raised-button color="primary" style="margin-top: 15px;" (click)="newTournament()">Neuen Wettkampf
-    erstellen</button>
+  <mat-card-title style="margin-top: 15px;">
+      Abgeschlossene Wettkämpfe
+    </mat-card-title>
 </mat-card>

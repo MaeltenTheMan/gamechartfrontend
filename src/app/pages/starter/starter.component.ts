@@ -1,3 +1,4 @@
+import { Color } from './../../models/Color';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
@@ -18,6 +19,7 @@ export class StarterComponent implements OnInit {
 
   selectedUser: string = "user";
 
+  colors: Color[];
 
   constructor(private newDialog: MatDialog, private api: BasicAPI, private router: Router, private localStorage: AsyncLocalStorage, private fb: FormBuilder) { }
 
@@ -51,7 +53,7 @@ export class StarterComponent implements OnInit {
   }
 
   setTournament(id: number) {
-   this.setAuthentication(this.selectedUser);
+    this.setAuthentication(this.selectedUser);
     this.localStorage.setItem('wettkampfID', id.toString()).subscribe(() => {
       this.router.navigate(['/home']);
     });

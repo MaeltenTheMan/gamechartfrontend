@@ -59,9 +59,9 @@ export class BasicAPI {
         return this.http.get<Player[]>(this.basePath + "/getAllPlayer");
     }
 
-    getColors(): Observable<Color[]> {
+    getColors():  Observable<Color[]>  {
 
-        return this.http.get<Color[]>(this.basePath + "/getAllColors");
+        return this.http.get<Color[]>("./assets/Json-Objects/colors.json");
     }
 
     getTournaments(): Observable<Tournament[]> {

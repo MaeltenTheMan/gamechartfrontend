@@ -42,7 +42,7 @@ export class ChartComponent implements OnInit {
       this.dataSource.data = secondSort;
 
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 

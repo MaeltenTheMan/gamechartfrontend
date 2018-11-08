@@ -47,7 +47,7 @@ export class GameHistoryComponent implements OnInit {
       this.datasource.data = this.games;
       this.datasource.sort = this.sort;
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 
@@ -55,7 +55,7 @@ export class GameHistoryComponent implements OnInit {
     this.api.getTeams(this.wettkampfid).subscribe(res => {
       this.teams = res;
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     });
   }
 
@@ -81,7 +81,7 @@ export class GameHistoryComponent implements OnInit {
       let data = { team: this.teams.find(x => x.id === teamID), players: res }
       this.dialog.open(InspectTeamComponent, { disableClose: true, data: data })
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     })
 
   }

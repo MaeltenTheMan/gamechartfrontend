@@ -42,7 +42,7 @@ export class TeamsComponent implements OnInit {
       this.dataSource.sort = this.sort;
 
     }, error => {
-      console.log(error);
+      alert(error.status + " " + error.statusText);
 
     });
   }
@@ -98,7 +98,7 @@ export class TeamsComponent implements OnInit {
 
       })
     },  error => {
-      alert(error.error);
+      alert(error.status + " " + error.statusText);
     })
 
 
