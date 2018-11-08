@@ -91,10 +91,15 @@ export class TeamsComponent implements OnInit {
   addPlayerToTeam(teamID) {
     this.api.getPlayer().subscribe(response => {
 
-      let data = { teamID: teamID, players: response }
+      let data = { teamID: teamID, players: response, existingPlayers: undefined }
+
+      this.api.getPlayerOfTeam(teamID).subscribe(res => {
+        data.existingPlayers = res;
 
       const ref2 = this.dialog.open(AddPlayerToTeamComponent, { disableClose: true, data: data });
       ref2.componentInstance.onAdd.subscribe(() => {
+
+      })
 
       })
     },  error => {

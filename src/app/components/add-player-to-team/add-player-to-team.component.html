@@ -1,9 +1,18 @@
 <mat-card style="margin: 15px">
   <mat-card-title style="font-weight: bold">
-    Einen Spieler hinzufügen
+      Enthaltene Spieler:
+  </mat-card-title>
+
+  <mat-list *ngFor="let existingPlayer of existingPlayers" class="stripedList">
+    <mat-list-item>
+      <label>{{existingPlayer.firstname}} {{existingPlayer.lastname}}</label>
+    </mat-list-item>
+  </mat-list>
+  <mat-card-title style="margin-top: 15px;">
+    Spieler hinzufügen:
   </mat-card-title>
   <form [formGroup]="playerForm" class="formfield" #formDirective="ngForm">
-    <mat-form-field style="margin-bottom:15px;">
+    <mat-form-field>
       <mat-select placeholder="Spieler" formControlName="player">
         <mat-option *ngFor="let player of players" [value]="player">
           {{player.firstname}}

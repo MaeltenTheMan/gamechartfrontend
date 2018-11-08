@@ -3,8 +3,6 @@
 *{
     margin: 0;
     padding: 0;
-/*     background-color: #f8f8f8; */
-
 }
 
 
@@ -19,12 +17,28 @@
     padding-top: 10px;
    
   }
+
+
+//gestreifte Tabellen
 mat-row:nth-child(odd){
     background-color:#ddd;
 }
 mat-row:nth-child(even){
     background-color: #F8F8f8;
 }
+
+.stripedList:nth-child(even){
+    background-color: #F8F8f8;
+}
+
+.stripedList:nth-child(odd){
+    background-color:#ddd;
+}
+
+.stripedList{
+    border: 0.5px solid #ccc;
+}
+
 
 mat-table{
     margin: 15px;

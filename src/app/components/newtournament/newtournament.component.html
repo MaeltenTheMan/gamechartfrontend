@@ -6,10 +6,14 @@
   <form [formGroup]="tournamentForm" class="formfield">
     <mat-form-field>
       <input matInput placeholder="Wettkampfname" formControlName="name">
-      <mat-error >Der Wettkampf muss einen namen Haben</mat-error>
+      <mat-error >Der Wettkampf muss einen namen haben</mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Typ des Wettkampfs" formControlName="typ">
+    <mat-form-field style="margin-bottom: 10px;">
+      <mat-select placeholder="Typ des Wettkampfs" formControlName="typ">
+          <mat-option value="Weltmeisterschaft">Weltmeisterschaft</mat-option>
+          <mat-option value="Olympiade">Olympiade</mat-option>
+          <mat-option value="Freizeit">Freizeit</mat-option>
+        </mat-select>
       <mat-error >Eine Wettkampftyp muss eingetragen sein</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="createNewTournament()" [disabled]="!tournamentForm.valid">Wettkampf erstellen</button>

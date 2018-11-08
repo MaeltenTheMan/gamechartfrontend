@@ -1,35 +1,39 @@
 <mat-dialog-content>
   <mat-card>
     <mat-card-title>
-      <label style="font-weight: bold">Spielübersicht</label>
+      <label style="font-weight: bold">Spielinformationen:</label>
     </mat-card-title>
     <mat-card-content>
       <mat-list>
-        <mat-list-item>
-          <label class="description">Spielname:</label>
+        <mat-list-item class="stripedList">
+          <label class="description" >Name:</label>
           <label>{{game?.name}}</label>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="stripedList">
           <label class="description">Gesamtpunkzahl:</label>
           <label>{{game?.points}}</label>
         </mat-list-item>
-        <mat-list-item>
+        <mat-card-title style="margin-top: 15px;">
+          <label style="font-weight: bold; ">Platzierungen:</label>
+        </mat-card-title>
+        <mat-list-item class="stripedList">
           <label class="description">Platz 1:</label>
           <label>{{game?.winnerid | idToNameConverter : teams}}</label>
         </mat-list-item>
-        <mat-list-item>
+        
+        <mat-list-item class="stripedList">
           <label class="description">Platz 2:</label>
           <label>{{game?.silverid | idToNameConverter : teams}}</label>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="stripedList">
           <label class="description">Platz 3:</label>
           <label>{{game?.bronzeid | idToNameConverter : teams}}</label>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="stripedList">
           <label class="description">Platz 4:</label>
           <label>{{game?.ironid | idToNameConverter : teams}}</label>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="stripedList">
           <label class="description">Platz 5:</label>
           <label>{{game?.loserid | idToNameConverter : teams}}</label>
         </mat-list-item>

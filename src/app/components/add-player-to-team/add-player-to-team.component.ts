@@ -16,6 +16,7 @@ export class AddPlayerToTeamComponent implements OnInit {
   onAdd = new EventEmitter();
 
   players: Player[];
+  existingPlayers: Player[];
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class AddPlayerToTeamComponent implements OnInit {
 
   ngOnInit() {
     this.players = this.data.players;
+    this.existingPlayers = this.data.existingPlayers;
     this.addPlayerToTeamForm();
     this.dialog.updateSize("500px");
 
@@ -33,15 +35,14 @@ export class AddPlayerToTeamComponent implements OnInit {
   addPlayerToTeamForm() {
     this.playerForm = this.fb.group({
       player: new FormControl("", [
-        Validators.required]),
+        Validators.required
+      ]),
 
     });
   }
 
 
   addPlayerToTeam() {
-
-    console.log(this.data);
 
     let body = this.playerForm.value;
 
@@ -52,8 +53,6 @@ export class AddPlayerToTeamComponent implements OnInit {
     }, error => {
       alert(error.status + " " + error.statusText);
     });
-
-
   }
 
   close() {
