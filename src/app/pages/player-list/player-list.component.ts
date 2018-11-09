@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { ChangePlayerComponent } from './../../components/change-player/change-player.component';
 import { Color } from './../../models/Color';
 import { DatePipe } from '@angular/common';
@@ -21,13 +22,16 @@ export class PlayerListComponent implements OnInit {
 
   players: Player[];
 
-  constructor(private api: BasicAPI, private dialog: MatDialog, private dialog2: MatDialog) { }
+  user: string;
+
+  constructor(private api: BasicAPI, private dialog: MatDialog, private dialog2: MatDialog, private localStorage: AsyncLocalStorage) { }
 
   ngOnInit() {
 
     this.breakpoint = (window.innerWidth <= 830) ? 1 : 2;
     this.getAllColors();
     this.getAllPlayer();
+    this.getLocalStorageAuthentication()
   }
 
   onResize(event) {
@@ -43,6 +47,20 @@ export class PlayerListComponent implements OnInit {
     });
   }
 
+  getLocalStorageAuthentication() {
+
+    this.localStorage.getItem<any>('Authentication').subscribe(res => {
+
+      if (res != null) {
+        this.user = res;
+
+        //setting default value to undefined
+      } else {
+        this.user = undefined;
+      }
+    });
+  }
+
   createNewPlayer() {
     const ref = this.dialog.open(CreatePlayerComponent, { disableClose: true, data: this.colors });
     ref.componentInstance.onAdd.subscribe(res => {
@@ -55,16 +73,16 @@ export class PlayerListComponent implements OnInit {
   }
 
   deletePlayer(playerId) {
-    this.api.deletePlayerByID(playerId).subscribe(res => {
+    this.api.deletePlayerByID(playerId).subscribe(() => {
 
-      let removeIndex = this.players.map(item => { return item.id; }).indexOf(res.id);
-
-      this.players.splice(removeIndex, 1);
-
+      this.api.getPlayer().subscribe(res=>{
+        this.players = res;
+      })
+      
     }, error => {
       alert(error.error);
     });
-  }
+  } 
 
   getAllColors() {
     this.api.getColors().subscribe(res => {

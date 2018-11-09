@@ -1,5 +1,5 @@
 <mat-card style="margin: 15px">
-  <mat-card-title style="font-weight: bold">
+  <mat-card-title *ngIf="existingPlayers.length!=0">
       Enthaltene Spieler:
   </mat-card-title>
 
@@ -12,7 +12,7 @@
     Spieler hinzufügen:
   </mat-card-title>
   <form [formGroup]="playerForm" class="formfield" #formDirective="ngForm">
-    <mat-form-field>
+    <mat-form-field style="margin-bottom: 10px;">
       <mat-select placeholder="Spieler" formControlName="player">
         <mat-option *ngFor="let player of players" [value]="player">
           {{player.firstname}}

@@ -17,26 +17,26 @@
                 <mat-list>
                     <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
                         <label class="description">Vorname:</label>
-                        <label>{{player?.firstname}}</label>
+                        <label class="texts">{{player?.firstname}}</label>
                     </mat-list-item>
                     <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
                         <label class="description">Nachname:</label>
-                        <label>{{player?.lastname}}</label>
+                        <label class="texts">{{player?.lastname}}</label>
                     </mat-list-item>
                     <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
                         <label class="description">Geburtstag:</label>
-                        <label>{{player?.birthday  | date:'mediumDate'}}</label>
+                        <label class="texts">{{player?.birthday  | date:'mediumDate'}}</label>
                     </mat-list-item>
                     <mat-list-item [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
                         <label class="description">Siege:</label>
-                        <label>{{player?.wins}}</label>
+                        <label class="texts">{{player?.wins}}</label>
                     </mat-list-item>
                     <mat-list-item style="margin-bottom: 30px" [ngStyle]="{'color': player?.color | fontcolorpipe: colors }">
                         <label class="description">Beschreibung:</label>
-                        <label>{{player?.description}}</label>
+                        <label class="texts">{{player?.description}}</label>
                     </mat-list-item>
-                    <mat-list-item>
-                        <button mat-raised-button color="warn" title="Spieler löschen" (click)="deletePlayer(player.id)"><i
+                    <mat-list-item *ngIf="user=='admin'">
+                        <button mat-raised-button color="warn" title="Spieler löschen" (click)="deletePlayer(player.id)" style="margin-right: 2px;"><i
                                 class="material-icons">cancel</i></button>
                         <button mat-raised-button color="primary" title="Spieler bearbeiten" (click)="editPlayer(player.id)"><i
                                 class="material-icons">build</i></button>

@@ -20,7 +20,7 @@ export class BasicAPI {
 
     public httpHeaders = new HttpHeaders({
         "Content-Type": 'application/json',
-        
+
 
     });
 
@@ -41,12 +41,12 @@ export class BasicAPI {
     }
     //getting all Teams for Table and teamcontrols
     getTeams(wettkampfID: number): Observable<Team[]> {
-     
-        
+
+
 
 
         return this.http.get<Team[]>(this.basePath + "/getAllTeams/" + wettkampfID, this.options);
-       
+
     }
 
     //getting all Games for GameHistory and GameControls
@@ -59,7 +59,7 @@ export class BasicAPI {
         return this.http.get<Player[]>(this.basePath + "/getAllPlayer");
     }
 
-    getColors():  Observable<Color[]>  {
+    getColors(): Observable<Color[]> {
 
         return this.http.get<Color[]>("./assets/Json-Objects/colors.json");
     }
@@ -133,9 +133,9 @@ export class BasicAPI {
         return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options);
     }
 
-    addPlayerToTeam(teamID, playerID): Observable<any> {
+    addPlayerToTeam(teamID, playerID, wettkampfID): Observable<any> {
 
-        return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID, this.options);
+        return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID  + "/" + wettkampfID, this.options);
     }
 
     getPlayerOfTeam(teamID): Observable<Player[]> {
@@ -146,6 +146,11 @@ export class BasicAPI {
 
     getTournamentByID(wettkampfID): Observable<Tournament> {
         return this.http.get<Tournament>(this.basePath + "/getTournamentByID/" + wettkampfID, this.options);
+    }
+
+
+    getUsedPlayers(wettkampfID): Observable<Player[]> {
+        return this.http.get<Player[]>(this.basePath + "/getUsedPlayers/" + wettkampfID, this.options);
     }
 
 }

@@ -7,7 +7,7 @@
       <mat-list>
         <mat-list-item class="stripedList">
           <label class="description">Name:</label>
-          <label style="font-weight: bold"> "{{team?.name}}"</label>
+          <label > {{team?.name}}</label>
         </mat-list-item>
 
         <mat-list-item class="stripedList">
@@ -15,7 +15,7 @@
           <label>{{team?.motto}}</label>
         </mat-list-item>
       </mat-list>
-      <mat-card-title style="margin-top: 15px;">
+      <mat-card-title *ngIf="players.length!=0" style="margin-top: 15px;">
         Spieler:
       </mat-card-title>
       <mat-list *ngFor="let player of players, let i = index" class="stripedList">

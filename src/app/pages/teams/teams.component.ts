@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { AddPlayerToTeamComponent } from './../../components/add-player-to-team/add-player-to-team.component';
 import { CreatePlayerComponent } from './../../components/create-player/create-player.component';
 import { EditTeamComponent } from './../../components/edit-team/edit-team.component';
@@ -7,7 +8,7 @@ import { BasicAPI } from './../../services/basicAPI.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { AddteamComponent } from '../../components/addteam/addteam.component';
-import { Tournament } from '../../models/Tournament';
+
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -22,17 +23,20 @@ export class TeamsComponent implements OnInit {
 
   wettkampfid: number;
 
+  user: string;
+
   displayedColumns: string[] = ['name', 'motto', 'delete'];
 
   public dataSource = new MatTableDataSource<Team>();
 
-  constructor(private dialog: MatDialog, private api: BasicAPI, private route: ActivatedRoute) { }
+  constructor(private dialog: MatDialog, private api: BasicAPI, private route: ActivatedRoute, private localStorage: AsyncLocalStorage){} 
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.wettkampfid = +params['wettkampfid'];
 
-    })
+    });
+    this.getLocalStorageAuthentication();
     this.getAllteams();
   }
 
@@ -54,12 +58,29 @@ export class TeamsComponent implements OnInit {
 
     const ref = this.dialog.open(AddteamComponent, { disableClose: true, data: data });
     ref.componentInstance.onAdd.subscribe(res => {
-    
+
       this.dataSource.data.push(res);
       this.dataSource.sort = this.sort;
 
     });
   }
+
+
+
+  getLocalStorageAuthentication() {
+
+    this.localStorage.getItem<any>('Authentication').subscribe(res => {
+
+      if (res != null) {
+        this.user = res;
+
+        //setting default value to undefined
+      } else {
+        this.user = undefined;
+      }
+    });
+  }
+
 
   //TODO: in ein BEHAVIOR SUBJECT umwandeln damit die DataSource nicht komplett neu geladen werden muss
   deleteTeam(teamID) {
@@ -68,7 +89,7 @@ export class TeamsComponent implements OnInit {
         this.dataSource.data = response;
       })
 
-    },  error => {
+    }, error => {
       alert(error.error);
     });
   }
@@ -83,7 +104,7 @@ export class TeamsComponent implements OnInit {
         this.dataSource.data = res;
         this.dataSource.sort = this.sort;
       });
-    } ,  error => {
+    }, error => {
       alert(error.error);
     });
   }
@@ -91,18 +112,19 @@ export class TeamsComponent implements OnInit {
   addPlayerToTeam(teamID) {
     this.api.getPlayer().subscribe(response => {
 
-      let data = { teamID: teamID, players: response, existingPlayers: undefined }
+      let data = { teamID: teamID, players: response, existingPlayers: undefined, wettkampfID: this.wettkampfid, usedPlayers: undefined }
 
       this.api.getPlayerOfTeam(teamID).subscribe(res => {
         data.existingPlayers = res;
-
-      const ref2 = this.dialog.open(AddPlayerToTeamComponent, { disableClose: true, data: data });
-      ref2.componentInstance.onAdd.subscribe(() => {
-
+        this.api.getUsedPlayers(this.wettkampfid).subscribe(res2 => {
+    
+          data.usedPlayers = res2;
+          const ref2 = this.dialog.open(AddPlayerToTeamComponent, { disableClose: true, data: data });
+          ref2.componentInstance.onAdd.subscribe(() => {
+          });
+        })
       })
-
-      })
-    },  error => {
+    }, error => {
       alert(error.status + " " + error.statusText);
     })
 

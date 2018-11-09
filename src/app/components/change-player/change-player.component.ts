@@ -40,7 +40,7 @@ export class ChangePlayerComponent implements OnInit {
       lastname: new FormControl(player.lastname, [
         Validators.required]),
       description: new FormControl(player.description, [
-        Validators.required]),
+        Validators.required , Validators.maxLength(50)]),
       color: new FormControl(player.color, [
         Validators.required]),
       birthday: new FormControl(player.birthday, [

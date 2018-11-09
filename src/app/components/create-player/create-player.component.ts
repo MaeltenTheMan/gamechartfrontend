@@ -39,7 +39,7 @@ export class CreatePlayerComponent implements OnInit {
       lastname: new FormControl("", [
         Validators.required]),
       description: new FormControl("", [
-        Validators.required]),
+        Validators.required, Validators.maxLength(50)]),
       color: new FormControl("", [
         Validators.required]),
       birthday: new FormControl("", [

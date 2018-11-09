@@ -16,6 +16,7 @@ export class AddPlayerToTeamComponent implements OnInit {
   onAdd = new EventEmitter();
 
   players: Player[];
+
   existingPlayers: Player[];
 
   constructor(
@@ -25,7 +26,9 @@ export class AddPlayerToTeamComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.players = this.data.players;
+
+    this.players = this.deletePlayer(this.data.players, this.data.usedPlayers);
+
     this.existingPlayers = this.data.existingPlayers;
     this.addPlayerToTeamForm();
     this.dialog.updateSize("500px");
@@ -41,12 +44,29 @@ export class AddPlayerToTeamComponent implements OnInit {
     });
   }
 
+  deletePlayer(allPlayers: Player[], usedPlayers: Player[]): Player[] {
+
+    if (usedPlayers.length != 0) {
+
+      for (let j = 0; j < usedPlayers.length; j++) {
+
+        let removeIndex = allPlayers.map(item => { return item.id; }).indexOf(usedPlayers[j].id);
+
+        allPlayers.splice(removeIndex, 1);
+      }
+
+    }
+
+    return allPlayers;
+
+
+  }
 
   addPlayerToTeam() {
 
     let body = this.playerForm.value;
 
-    this.api.addPlayerToTeam(this.data.teamID, body.player.id).subscribe(() => {
+    this.api.addPlayerToTeam(this.data.teamID, body.player.id, this.data.wettkampfID).subscribe(() => {
 
       this.close();
 

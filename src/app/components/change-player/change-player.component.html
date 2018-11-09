@@ -14,7 +14,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Beschreibung" formControlName="description">
-        <mat-error>Trage eine Beschreibung ein</mat-error>
+        <mat-error>Trage eine Beschreibung ein, max 50 Zeichen</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="Lieblingsfarbe" formControlName="color">
@@ -22,6 +22,7 @@
             {{myColor.name}}
           </mat-option>
         </mat-select>
+        <mat-error>Wähle eine Farbe</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput [matDatepicker]="picker" placeholder="Geburtstag" formControlName="birthday">
