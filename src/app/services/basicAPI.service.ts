@@ -66,7 +66,7 @@ export class BasicAPI {
 
     getTournaments(): Observable<Tournament[]> {
 
-        return this.http.get<Tournament[]>(this.basePath + "/getTournaments");
+        return this.http.get<Tournament[]>(this.basePath + "/getActiveTournaments");
     }
 
     createNewTeam(body, wettkampfID: number): Observable<Team> {
@@ -133,24 +133,39 @@ export class BasicAPI {
         return this.http.post<Team>(this.basePath + "/editTeam/" + id, body, this.options);
     }
 
-    addPlayerToTeam(teamID, playerID, wettkampfID): Observable<any> {
+    addPlayerToTeam(teamID: number, playerID: number , wettkampfID: number): Observable<any> {
 
         return this.http.post<any>(this.basePath + "/addPlayerToTeam/" + teamID + "/" + playerID  + "/" + wettkampfID, this.options);
     }
 
-    getPlayerOfTeam(teamID): Observable<Player[]> {
+    getPlayerOfTeam(teamID:number): Observable<Player[]> {
 
         return this.http.get<Player[]>(this.basePath + "/getPlayerOfTeam/" + teamID, this.options);
     }
 
 
-    getTournamentByID(wettkampfID): Observable<Tournament> {
+    getTournamentByID(wettkampfID:number): Observable<Tournament> {
         return this.http.get<Tournament>(this.basePath + "/getTournamentByID/" + wettkampfID, this.options);
     }
 
+    getFinishedTournaments(): Observable<Tournament[]> {
 
-    getUsedPlayers(wettkampfID): Observable<Player[]> {
+        return this.http.get<Tournament[]>(this.basePath + "/getFinishedTournaments");
+    }
+
+
+    getUsedPlayers(wettkampfID:number): Observable<Player[]> {
         return this.http.get<Player[]>(this.basePath + "/getUsedPlayers/" + wettkampfID, this.options);
+    }
+
+
+    addWinsToPlayers(body: Player[]): Observable<Player[]>{
+ 
+        return this.http.post<Player[]>(this.basePath + "/addWinsToPlayers", body, this.options);
+    }
+
+    setStatus(wettkampfID: number, teamID: number): Observable<Tournament>{
+    return this.http.post<Tournament>(this.basePath + "/setTourneyStatus/" + wettkampfID + "/" + teamID, this.options);
     }
 
 }

@@ -14,15 +14,29 @@
           </mat-select>
         </mat-form-field>
   </mat-card-subtitle>
-  <mat-card-title>
+  <mat-card-content *ngIf="tournaments.length!=0">
+  <mat-card-title >
     Aktive Wettkämpfe
   </mat-card-title>
   <mat-list class="stripedList" *ngFor="let tournament of tournaments">
     <mat-list-item >
-      <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id)">{{tournament?.name}}</label>
+      <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id, tournament.status)">{{tournament?.name}}</label>
+      <label style="width: 500px; height: 30px;" (click)="setTournament(tournament.id, tournament.status)">{{tournament?.typ}}</label>
+      <label style="width: 500px; height: 30px; margin-left: 15px;" (click)="setTournament(tournament.id, tournament.status)">{{tournament?.datum | date:'mediumDate'}}</label>
     </mat-list-item>
   </mat-list>
+</mat-card-content>
+<mat-card-content *ngIf="finishedTournaments.length!=0">
   <mat-card-title style="margin-top: 15px;">
       Abgeschlossene Wettkämpfe
     </mat-card-title>
+    <mat-list class="stripedList" *ngFor="let finishedTournament of finishedTournaments">
+      <mat-list-item >
+        <label style="width: 500px; height: 30px;" (click)="setTournament(finishedTournament.id, finishedTournament.status)">{{finishedTournament?.name}}</label>
+        <label style="width: 500px; height: 30px;" (click)="setTournament(finishedTournament.id, finishedTournament.status)">{{finishedTournament?.typ}}</label>
+        <label style="width: 500px; height: 30px; margin-left: 15px;" (click)="setTournament(tournament.id, finishedTournament.status)">{{finishedTournament?.datum | date:'mediumDate'}}</label>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
 </mat-card>
+

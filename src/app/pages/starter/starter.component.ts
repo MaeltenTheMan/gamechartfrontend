@@ -16,12 +16,17 @@ import { Tournament } from '../../models/Tournament';
 export class StarterComponent implements OnInit {
 
   tournaments: Tournament[];
+  finishedTournaments: Tournament[];
 
   selectedUser: string = "user";
 
   colors: Color[];
 
-  constructor(private newDialog: MatDialog, private api: BasicAPI, private router: Router, private localStorage: AsyncLocalStorage, private fb: FormBuilder) { }
+
+  constructor(private newDialog: MatDialog, private api: BasicAPI, private router: Router, private localStorage: AsyncLocalStorage, private fb: FormBuilder) { 
+    this.tournaments = [];
+    this.finishedTournaments = [];
+  }
 
   ngOnInit() {
 
@@ -30,6 +35,8 @@ export class StarterComponent implements OnInit {
       //route to 'start' if wettkampfid is undefined only 
       if (res == undefined || res == 0) {
         this.getAllTournaments();
+        this.getAllFinishedTournaments();
+        
       } else {
         this.router.navigate(['/home']);
       }
@@ -42,27 +49,40 @@ export class StarterComponent implements OnInit {
     });
   }
 
+  getAllFinishedTournaments(){
+    this.api.getFinishedTournaments().subscribe(res => {
+      this.finishedTournaments = res;
+    });
+  }
+
   //Öffnen eines Erstellungsdialoges
   newTournament() {
     const ref = this.newDialog.open(NewtournamentComponent, { disableClose: true });
     ref.componentInstance.onAdd.subscribe(res => {
-
       this.tournaments.push(res);
-
     });
   }
 
-  setTournament(id: number) {
+ 
+
+  setTournament(id: number, status : string) {
+
     this.setAuthentication(this.selectedUser);
+    this.setStatus(status);
+
     this.localStorage.setItem('wettkampfID', id.toString()).subscribe(() => {
       this.router.navigate(['/home']);
     });
-
   }
 
   setAuthentication(user: string) {
     this.localStorage.setItem('Authentication', user).subscribe(() => {
 
+    });
+  }
+
+  setStatus(status: string) {
+    this.localStorage.setItem('Status', status.toString()).subscribe(() => {
     });
   }
 

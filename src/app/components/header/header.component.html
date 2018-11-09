@@ -2,7 +2,7 @@
   <a class="navButtons" mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
   <a class="navButtons" mat-button [routerLink]="['/player', wettkampfid]" routerLinkActive="active">Spielerkartei</a>
   <a class="navButtons" mat-button [routerLink]="['/teams', wettkampfid]" routerLinkActive="active">Teamverwaltung</a>
-  <a *ngIf="this.user==='admin'" class="navButtons" mat-button [routerLink]="['/game', wettkampfid]" routerLinkActive="active">Neues Spiel</a>
+  <a *ngIf="this.user==='admin' && this.status ==='1'" class="navButtons" mat-button [routerLink]="['/game', wettkampfid]" routerLinkActive="active">Neues Spiel</a>
   <a class="navButtons" mat-button [routerLink]="['/chart', wettkampfid]" routerLinkActive="active">Tabelle</a>
   <a *ngIf="this.user==='admin'" class="navButtons" mat-button [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
   <a class="navButtons" style="float:right;" mat-button (click)="navigateStart()">Abmelden</a>

@@ -19,10 +19,9 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="edit">
-    <mat-header-cell *matHeaderCellDef class="heading">Bearbeiten</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Löschen</mat-header-cell>
     <mat-cell *matCellDef="let game">
       <button mat-raised-button color="warn" title="Spiel löschen" (click)="deleteGame(game.id)"><i class="material-icons">cancel</i></button>
-     <!--  <button mat-raised-button color="primary" title="Spiel bearbeiten" (click)="changeGame(game.id)"><i class="material-icons">build</i></button> -->
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

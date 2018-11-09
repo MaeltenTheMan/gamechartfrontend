@@ -8,6 +8,8 @@ export class HeaderInterceptor implements HttpInterceptor {
 
     userRole: string;
 
+    status: string;
+
     constructor(private localStorage: AsyncLocalStorage) {
 
     }
@@ -23,16 +25,37 @@ export class HeaderInterceptor implements HttpInterceptor {
         });
     }
 
+    getStatus() {
+        this.localStorage.getItem<string>('Status').subscribe(res => {
+  
+            if (!!res) {
+                this.status = res;
+            
+
+            } 
+        });
+    }
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         this.getUser();
+        this.getStatus();
+
+        
 
         const authReq = req.clone({
             headers: req.headers.set('Authentication',
                 "" + this.userRole)
-        });
+               
+        } );
+        
+        const second = authReq.clone({
+            
+            headers: authReq.headers.set("Status",
+            "" + this.status)
+        })
 
-        return next.handle(authReq)
+        return next.handle(second)
             .do(() => {
             })
             .catch((error, caught) => {

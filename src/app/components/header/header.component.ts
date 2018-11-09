@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
   user: string;
 
+  status: string;
+
   constructor(private spinnerService: SpinnerService, private localStorage: AsyncLocalStorage, private router: Router) {
 
 
@@ -28,6 +30,7 @@ export class HeaderComponent implements OnInit {
       //updating localstorage on every httprequest
       this.getLocalStorageWKID();
       this.getLocalStorageAuthentication();
+      this.getLocalStorageStatus();
 
     });
   }
@@ -62,6 +65,21 @@ export class HeaderComponent implements OnInit {
         //setting default value to undefined
       } else {
         this.user = undefined;
+      }
+    });
+  }
+
+
+  getLocalStorageStatus() {
+
+    this.localStorage.getItem<any>('Status').subscribe(res => {
+
+      if (res != null) {
+        this.status = res;
+
+        //setting default value to undefined
+      } else {
+        this.status = undefined;
       }
     });
   }

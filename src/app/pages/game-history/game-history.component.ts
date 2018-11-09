@@ -1,6 +1,7 @@
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { InspectTeamComponent } from './../../components/inspect-team/inspect-team.component';
 import { InspectGameComponent } from './../../components/inspect-game/inspect-game.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from './../../models/Team';
 import { FormBuilder } from '@angular/forms';
 import { Game } from './../../models/Game';
@@ -26,16 +27,22 @@ export class GameHistoryComponent implements OnInit {
   teams: Team[];
   games: Game[];
 
-  constructor(private api: BasicAPI, private fb: FormBuilder, private route: ActivatedRoute, private dialog: MatDialog) { }
+  firstTeam: Team;
+
+  constructor(
+    private api: BasicAPI,
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private localStorage: AsyncLocalStorage,
+    private router: Router) { }
 
 
   ngOnInit() {
 
     this.route.params.subscribe(params => {
       this.wettkampfid = +params['wettkampfid'];
-
-    })
-
+    });
+    this.getFirst();
     this.getAllTeams();
     this.getAllGames();
   }
@@ -46,7 +53,7 @@ export class GameHistoryComponent implements OnInit {
       this.games = res;
       this.datasource.data = this.games;
       this.datasource.sort = this.sort;
-    },  error => {
+    }, error => {
       alert(error.status + " " + error.statusText);
     });
   }
@@ -54,7 +61,7 @@ export class GameHistoryComponent implements OnInit {
   getAllTeams() {
     this.api.getTeams(this.wettkampfid).subscribe(res => {
       this.teams = res;
-    },  error => {
+    }, error => {
       alert(error.status + " " + error.statusText);
     });
   }
@@ -65,8 +72,16 @@ export class GameHistoryComponent implements OnInit {
         this.datasource.data = response;;
         this.datasource.sort = this.sort;
       });
-    },  error => {
+    }, error => {
       alert(error.error);
+    });
+  }
+
+  getFirst() {
+    this.api.getBiggestPoints(this.wettkampfid).subscribe(res => {
+
+      this.firstTeam = res[0];
+
     });
   }
 
@@ -80,7 +95,7 @@ export class GameHistoryComponent implements OnInit {
     this.api.getPlayerOfTeam(teamID).subscribe(res => {
       let data = { team: this.teams.find(x => x.id === teamID), players: res }
       this.dialog.open(InspectTeamComponent, { disableClose: true, data: data })
-    },  error => {
+    }, error => {
       alert(error.status + " " + error.statusText);
     })
 
@@ -90,8 +105,26 @@ export class GameHistoryComponent implements OnInit {
     alert("Diese Funktion muss noch eingefügt werden!");
   }
 
-  endTourney() {
-    alert("Diese Funktion muss noch eingefügt werden!");
-  }
 
+  //komplett unschön durch schlechtes Backend, kein Focus
+  endTourney() {
+   
+    this.api.setStatus(this.wettkampfid, this.firstTeam.id).subscribe(() => {
+
+      this.api.getPlayerOfTeam(this.firstTeam.id).subscribe(res => {
+
+        this.api.addWinsToPlayers(res).subscribe(() => {
+
+          this.wettkampfid = 0;
+          this.localStorage.setItem('Authentication', undefined).subscribe(() => { });
+          this.localStorage.setItem('wettkampfID', this.wettkampfid).subscribe(() => {
+            this.router.navigate(['/start']);
+          });
+
+        });
+      });
+    },  error => {
+        alert(error.error);
+      });
+  }
 }
