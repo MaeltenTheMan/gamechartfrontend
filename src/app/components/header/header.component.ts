@@ -1,5 +1,6 @@
+
 import { Router } from '@angular/router';
-import { AsyncLocalStorage } from 'angular-async-local-storage';
+import { AsyncLocalStorage } from 'angular-async-local-storage'; 
 
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
@@ -12,15 +13,13 @@ import { SpinnerService } from '../../services/spinner.service';
 export class HeaderComponent implements OnInit {
   loading: boolean;
 
-  wettkampfid: number;
+  wettkampfid: any;
 
-  user: string;
+  user: any;
 
-  status: string;
+  status: any;
 
   constructor(private spinnerService: SpinnerService, private localStorage: AsyncLocalStorage, private router: Router) {
-
-
 
     this.spinnerService.onLoadingChanged.subscribe(isLoading => {
 

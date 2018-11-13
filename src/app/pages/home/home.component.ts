@@ -1,3 +1,7 @@
+import { ImageComponentComponent } from './../../components/image-component/image-component.component';
+import { MatDialog, MatTableDataSource } from '@angular/material';
+import { GalleryPic } from './../../models/GalleryPic';
+import { GalleryService } from './../../services/gallery.service';
 import { Tournament } from './../../models/Tournament';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { BasicAPI } from './../../services/basicAPI.service';
@@ -11,19 +15,58 @@ import { Team } from '../../models/Team';
 })
 export class HomeComponent implements OnInit {
 
+  breakpoint: number;
   team: Team;
   wettkampf: Tournament;
+  galleryPics: GalleryPic[];
+  rowHeight: string;
+  status: string;
 
-  constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage) { }
+  public dataSource = new MatTableDataSource<GalleryPic>();
+
+  constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage, private gallery: GalleryService, private dialog: MatDialog) { }
+
 
   ngOnInit() {
-    this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
+    
 
+    if (window.innerWidth < 1100) {
+      this.breakpoint = 1;
+      this.rowHeight = "275px";
+    }
+    else if (window.innerWidth > 1650) {
+
+      this.breakpoint = 5;
+      this.rowHeight = "200px";
+    }
+    else {
+      this.breakpoint = 3;
+      this.rowHeight = "200px";
+    }
+
+    this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
       this.getBiggestPoints(res);
       this.getWettkampf(res);
+     
+      this.getGalleryPics();
+
     });
+  }
 
+  onResize(event) {
 
+    if (event.target.innerWidth <= 1650 && event.target.innerWidth > 1100) {
+      this.breakpoint = 3;
+      this.rowHeight = "200px";
+    }
+    else if (event.target.innerWidth > 1650) {
+      this.breakpoint = 5;
+      this.rowHeight = "200px";
+    }
+    else {
+      this.breakpoint = 1;
+      this.rowHeight = "275px";
+    }
   }
 
 
@@ -32,7 +75,14 @@ export class HomeComponent implements OnInit {
     this.api.getTournamentByID(wettkampfID).subscribe(res => {
 
       this.wettkampf = res[0];
-    },  error => {
+
+      if(this.wettkampf.status == 0){
+        this.status = "abgeschlossen"
+      }
+      else if( this.wettkampf.status == 1){
+        this.status = "aktiv"
+      }
+    }, error => {
       alert(error.status + " " + error.statusText);
     });
   }
@@ -42,9 +92,20 @@ export class HomeComponent implements OnInit {
     this.api.getBiggestPoints(id).subscribe(res => {
 
       this.team = res[0];
-    },  error => {
+    }, error => {
       alert(error.status + " " + error.statusText);
     });
+  }
+
+  getGalleryPics() {
+    this.gallery.getAllImages().subscribe(res => this.galleryPics = res);
+  }
+
+  imageDescription(id: number) {
+
+    let data = { pictures : this.galleryPics, pictureID : id }
+
+    this.dialog.open(ImageComponentComponent, { disableClose: true, data: data });
   }
 
 }

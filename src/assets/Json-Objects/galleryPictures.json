@@ -1,0 +1,144 @@
+[
+    {
+        "id": 1,
+        "title": "Schwebende Insel",
+        "src": "./assets/GalleryImages/1.jpg",
+        "description": "Schwebende Insel mit einem Baum"
+    },
+    {   
+        "id": 2,
+        "title": "Adler",
+        "src": "./assets/GalleryImages/2.jpg",
+        "description": "Ein großer Adler vor der Erde"
+    },
+    {
+        "id": 3,
+        "title": "Hallo2",
+        "src": "./assets/GalleryImages/3.jpg",
+        "description": "Grüner Wald"
+    },
+    {
+        "id": 4,
+        "title": "Hallo3",
+        "src": "./assets/GalleryImages/4.jpg",
+        "description": "Beleuchtete Stadt"
+    },
+    {   "id": 5,
+        "title": "Hallo4",
+        "src": "./assets/GalleryImages/5.jpg",
+        "description": "Bunter Rauch"
+    },
+    {
+        "id": 6,
+        "title": "Hallo5",
+        "src": "./assets/GalleryImages/6.jpg",
+        "description": "Farbexplosion"
+    },
+    {
+        "id": 7,
+        "title": "Hallo",
+        "src": "./assets/GalleryImages/1.jpg",
+        "description": "Schwebende Insel"
+    },
+    {   
+        "id": 8,
+        "title": "Hallo1",
+        "src": "./assets/GalleryImages/2.jpg",
+        "description": "Adler Erde"
+    },
+    {
+        "id": 9,
+        "title": "Hallo2",
+        "src": "./assets/GalleryImages/3.jpg",
+        "description": "Grüner Wald"
+    },
+    {
+        "id": 10,
+        "title": "Hallo3",
+        "src": "./assets/GalleryImages/4.jpg",
+        "description": "Beleuchtete Stadt"
+    },
+    {   "id": 11,
+        "title": "Hallo4",
+        "src": "./assets/GalleryImages/5.jpg",
+        "description": "Bunter Rauch"
+    },
+    {
+        "id": 12,
+        "title": "Hallo5",
+        "src": "./assets/GalleryImages/6.jpg",
+        "description": "Farbexplosion"
+    },
+    {
+        "id": 13,
+        "title": "Hallo",
+        "src": "./assets/GalleryImages/1.jpg",
+        "description": "Schwebende Insel"
+    },
+    {   
+        "id": 14,
+        "title": "Hallo1",
+        "src": "./assets/GalleryImages/2.jpg",
+        "description": "Adler Erde"
+    },
+    {
+        "id": 15,
+        "title": "Hallo2",
+        "src": "./assets/GalleryImages/3.jpg",
+        "description": "Grüner Wald"
+    },
+    {
+        "id": 16,
+        "title": "Hallo3",
+        "src": "./assets/GalleryImages/4.jpg",
+        "description": "Beleuchtete Stadt"
+    },
+    {   "id": 17,
+        "title": "Hallo4",
+        "src": "./assets/GalleryImages/5.jpg",
+        "description": "Bunter Rauch"
+    },
+    {
+        "id": 18,
+        "title": "Hallo5",
+        "src": "./assets/GalleryImages/6.jpg",
+        "description": "Farbexplosion"
+    },
+    {
+        "id": 19,
+        "title": "Hallo",
+        "src": "./assets/GalleryImages/1.jpg",
+        "description": "Schwebende Insel"
+    },
+    {   
+        "id": 20,
+        "title": "Hallo1",
+        "src": "./assets/GalleryImages/2.jpg",
+        "description": "Adler Erde"
+    },
+    {
+        "id": 21,
+        "title": "Hallo2",
+        "src": "./assets/GalleryImages/3.jpg",
+        "description": "Grüner Wald"
+    },
+    {
+        "id": 22,
+        "title": "Hallo3",
+        "src": "./assets/GalleryImages/4.jpg",
+        "description": "Beleuchtete Stadt"
+    },
+    {   "id": 23,
+        "title": "Hallo4",
+        "src": "./assets/GalleryImages/5.jpg",
+        "description": "Bunter Rauch"
+    },
+    {
+        "id": 24,
+        "title": "Hallo5",
+        "src": "./assets/GalleryImages/6.jpg",
+        "description": "Farbexplosion"
+    }
+
+
+]

@@ -1,4 +1,3 @@
-import { SpinnerService } from './../../services/spinner.service';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Team } from './../../models/Team';
 import { BasicAPI } from './../../services/basicAPI.service';
@@ -13,7 +12,7 @@ export class FooterComponent implements OnInit {
 
   team: Team;
 
-  wettkampfid;
+  wettkampfid : string;
 
   constructor(private api: BasicAPI, private localStorage: AsyncLocalStorage) {
   }

@@ -1,7 +1,6 @@
-import { Color } from './../../models/Color';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
+import { Color } from './../../models/Color';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { BasicAPI } from './../../services/basicAPI.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +22,7 @@ export class StarterComponent implements OnInit {
   colors: Color[];
 
 
-  constructor(private newDialog: MatDialog, private api: BasicAPI, private router: Router, private localStorage: AsyncLocalStorage, private fb: FormBuilder) { 
+  constructor(private newDialog: MatDialog, private api: BasicAPI, private router: Router, private localStorage: AsyncLocalStorage) { 
     this.tournaments = [];
     this.finishedTournaments = [];
   }

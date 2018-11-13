@@ -1,14 +1,15 @@
+
 import { Observable } from 'rxjs/Rx';
-import { AsyncLocalStorage } from 'angular-async-local-storage';
+ import { AsyncLocalStorage } from 'angular-async-local-storage'; 
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
 
-    userRole: string;
+    userRole: any;
 
-    status: string;
+    status: any;
 
     constructor(private localStorage: AsyncLocalStorage) {
 

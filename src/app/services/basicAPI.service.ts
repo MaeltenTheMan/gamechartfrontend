@@ -1,4 +1,3 @@
-import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Color } from './../models/Color';
 import { Player } from './../models/Player';
 import { Game } from './../models/Game';
@@ -34,7 +33,7 @@ export class BasicAPI {
 
     protected basePath = 'http://localhost:8080';
 
-    constructor(private http: HttpClient, private localStorage: AsyncLocalStorage) {
+    constructor(private http: HttpClient) {
 
 
 

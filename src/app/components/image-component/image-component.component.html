@@ -1,0 +1,18 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>
+      {{picture?.title}}
+    </mat-card-title>
+    <img style="width: 800px; height: auto" src="{{picture?.src}}">
+
+    <mat-card-subtitle style="margin-top: 10px;">
+      {{picture?.description}}
+    </mat-card-subtitle>
+    <mat-card-content style="margin-top: 10px;">
+      
+      <button mat-raised-button title="Vorheriges Bild" [disabled]="picture.id == 1" (click)="findPicture(picture.id - 1)" color="warn"><</button>
+      <button mat-raised-button [disabled]="picture.id == pictures.length" title="Nächstes Bild" (click)="findPicture(picture.id + 1)" color="warn">></button>
+      <button mat-raised-button color="primary" style="float:right" (click)="close()">schließen</button>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>

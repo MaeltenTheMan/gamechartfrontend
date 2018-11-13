@@ -1,7 +1,6 @@
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { ChangePlayerComponent } from './../../components/change-player/change-player.component';
 import { Color } from './../../models/Color';
-import { DatePipe } from '@angular/common';
 import { CreatePlayerComponent } from './../../components/create-player/create-player.component';
 import { MatDialog } from '@angular/material';
 import { Player } from './../../models/Player';
@@ -22,7 +21,7 @@ export class PlayerListComponent implements OnInit {
 
   players: Player[];
 
-  user: string;
+  user: any;
 
   constructor(private api: BasicAPI, private dialog: MatDialog, private dialog2: MatDialog, private localStorage: AsyncLocalStorage) { }
 

@@ -23,7 +23,7 @@ export class TeamsComponent implements OnInit {
 
   wettkampfid: number;
 
-  user: string;
+  user: any;
 
   displayedColumns: string[] = ['name', 'motto', 'delete'];
 

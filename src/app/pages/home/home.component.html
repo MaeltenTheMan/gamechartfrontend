@@ -1,5 +1,14 @@
 <h1 class="ausrichtung">Willkommen!</h1>
-<h2 class="ausrichtung">Aktuelles Event:</h2>
+<h2 class="ausrichtung">Dieser Wettkampf ist {{status}}.</h2>
 <h1 class="ausrichtung">{{wettkampf?.name}} - {{wettkampf?.typ}}</h1>
-<h2 class="ausrichtung">Hier kommen Bilder der aktuellen Veranstaltung hin.</h2>
 
+<mat-card class="MatCardParent">
+    <h2 style="margin-bottom: 15px">Hier ein paar Erinnerungen an vergangene Wettkämpfe:</h2>
+    <mat-grid-list [cols]="breakpoint" rowHeight="{{rowHeight}}" (window:resize)="onResize($event)">
+        <mat-grid-tile colspan="1" *ngFor="let pics of galleryPics">
+            <mat-card class="myMatCards" (click)="imageDescription(pics.id)">
+                <img src="{{pics?.src}}" class="pics">
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

@@ -1,11 +1,9 @@
-import { HeaderInterceptor } from './services/header.interceptor.service';
 //modules
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './modules/routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { ColorPickerModule } from 'ngx-color-picker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
@@ -32,19 +30,21 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { InspectGameComponent } from './components/inspect-game/inspect-game.component';
 import { PasswordComponentComponent } from './components/password-component/password-component.component';
 import { InspectTeamComponent } from './components/inspect-team/inspect-team.component';
+import { ImageComponentComponent } from './components/image-component/image-component.component';
 
 //services
 import { BasicAPI } from './services/basicAPI.service';
 import { SpinnerService } from './services/spinner.service';
 import { HttpSpinnerInterceptor } from './services/httpinterceptor.service';
 import { TeamService } from './services/team.service';
+import { GalleryService } from './services/gallery.service';
+import { HeaderInterceptor } from './services/header.interceptor.service';
 
 //pipes
 import { DatePipe } from '@angular/common';
 import { ColorBackground } from './pipes/colorbackground.pipe';
 import { FontColorPipe } from './pipes/fontcolor.pipe';
 import { IDToNameConverter } from './pipes/idtoname.pipe';
-
 
 
 @NgModule({
@@ -71,7 +71,8 @@ import { IDToNameConverter } from './pipes/idtoname.pipe';
     AddPlayerToTeamComponent,
     InspectGameComponent,
     PasswordComponentComponent,
-    InspectTeamComponent
+    InspectTeamComponent,
+    ImageComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -82,8 +83,7 @@ import { IDToNameConverter } from './pipes/idtoname.pipe';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ColorPickerModule,
-    AsyncLocalStorageModule
+    AsyncLocalStorageModule,
 
   ],
   entryComponents: [
@@ -94,12 +94,13 @@ import { IDToNameConverter } from './pipes/idtoname.pipe';
     NewtournamentComponent,
     AddPlayerToTeamComponent,
     InspectGameComponent,
-    InspectTeamComponent
+    InspectTeamComponent,
+    ImageComponentComponent
   ],
   providers: [
     BasicAPI,
     DatePipe,
-    
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpSpinnerInterceptor,
@@ -111,10 +112,11 @@ import { IDToNameConverter } from './pipes/idtoname.pipe';
       multi: true
     },
 
-    
+
 
     SpinnerService,
-    TeamService
+    TeamService,
+    GalleryService
   ],
   bootstrap: [AppComponent]
 })

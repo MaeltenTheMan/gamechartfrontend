@@ -3,4 +3,5 @@ export interface Tournament {
     name: string;
     datum?: Date;
     typ: string;
+    status: number;
 }
