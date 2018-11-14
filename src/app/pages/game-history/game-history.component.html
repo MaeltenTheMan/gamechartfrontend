@@ -1,15 +1,15 @@
 <mat-table [dataSource]="datasource">
   <ng-container matColumnDef="number">
-    <mat-header-cell *matHeaderCellDef class="heading">Spielnummer</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Spiel</mat-header-cell>
     <mat-cell *matCellDef="let game; let i = index">{{i+1}}.</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef class="heading">Spielname</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Name</mat-header-cell>
     <mat-cell *matCellDef="let game" style="cursor: pointer" (click)="inspectGame(game.id)" title="Spiel untersuchen">{{game?.name}}
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="winner">
-    <mat-header-cell *matHeaderCellDef class="heading">Gewinnerteam</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="heading">Gewinner</mat-header-cell>
     <mat-cell *matCellDef="let game" style="cursor: pointer" title="Team untersuchen" (click)="inspectTeam(game.winnerid)">{{game?.winnerid
       | idToNameConverter: teams}} </mat-cell>
   </ng-container>

@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   galleryPics: GalleryPic[];
   rowHeight: string;
   status: string;
+  openAble: boolean;
 
   public dataSource = new MatTableDataSource<GalleryPic>();
 
@@ -28,26 +29,28 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    
 
     if (window.innerWidth < 1100) {
       this.breakpoint = 1;
-      this.rowHeight = "275px";
+      this.rowHeight = "300px";
+      this.openAble = false;
     }
     else if (window.innerWidth > 1650) {
 
       this.breakpoint = 5;
       this.rowHeight = "200px";
+      this.openAble = true;
     }
     else {
       this.breakpoint = 3;
       this.rowHeight = "200px";
+      this.openAble = true;
     }
 
     this.localStorage.getItem<any>('wettkampfID').subscribe(res => {
       this.getBiggestPoints(res);
       this.getWettkampf(res);
-     
+
       this.getGalleryPics();
 
     });
@@ -57,15 +60,18 @@ export class HomeComponent implements OnInit {
 
     if (event.target.innerWidth <= 1650 && event.target.innerWidth > 1100) {
       this.breakpoint = 3;
+      this.openAble = true;
       this.rowHeight = "200px";
     }
     else if (event.target.innerWidth > 1650) {
       this.breakpoint = 5;
+      this.openAble = true;
       this.rowHeight = "200px";
     }
     else {
       this.breakpoint = 1;
-      this.rowHeight = "275px";
+      this.rowHeight = "300px";
+      this.openAble = false;
     }
   }
 
@@ -76,10 +82,10 @@ export class HomeComponent implements OnInit {
 
       this.wettkampf = res[0];
 
-      if(this.wettkampf.status == 0){
+      if (this.wettkampf.status == 0) {
         this.status = "abgeschlossen"
       }
-      else if( this.wettkampf.status == 1){
+      else if (this.wettkampf.status == 1) {
         this.status = "aktiv"
       }
     }, error => {
@@ -103,9 +109,12 @@ export class HomeComponent implements OnInit {
 
   imageDescription(id: number) {
 
-    let data = { pictures : this.galleryPics, pictureID : id }
+    if (this.openAble) {
 
-    this.dialog.open(ImageComponentComponent, { disableClose: true, data: data });
+      let data = { pictures: this.galleryPics, pictureID: id }
+
+      this.dialog.open(ImageComponentComponent, { disableClose: true, data: data });
+    }
   }
 
 }

@@ -1,10 +1,27 @@
+<div class="toggle" *ngIf="wettkampfid!=0">
+  <button mat-button [matMenuTriggerFor]="menu" style="color:#fff;"><i class="material-icons">menu</i></button>
+  <mat-menu class="menuButtons" style=" padding-top: 0" #menu="matMenu">
+    <mat-toolbar style="background-color: #333; color: #fff;">Menu</mat-toolbar>
+    <mat-nav-list stlye="height: 100%;">
+      <a mat-list-item [routerLink]="['/home']" routerLinkActive="active">Home</a>
+      <a mat-list-item [routerLink]="['/player', wettkampfid]" routerLinkActive="active">Spielerkartei</a>
+      <a mat-list-item [routerLink]="['/teams', wettkampfid]" routerLinkActive="active">Teamverwaltung</a>
+      <a mat-list-item *ngIf="this.user==='admin' && this.status ==='1'" [routerLink]="['/game', wettkampfid]"
+        routerLinkActive="active">Neues Spiel</a>
+      <a mat-list-item [routerLink]="['/chart', wettkampfid]" routerLinkActive="active">Tabelle</a>
+      <a *ngIf="this.user==='admin'" mat-list-item [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
+      <a mat-list-item (click)="navigateStart()">Abmelden</a>
+    </mat-nav-list>
+  </mat-menu>
+</div>
 <div *ngIf="wettkampfid!=0" class="navbar">
-  <a class="navButtons" mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
-  <a class="navButtons" mat-button [routerLink]="['/player', wettkampfid]" routerLinkActive="active">Spielerkartei</a>
-  <a class="navButtons" mat-button [routerLink]="['/teams', wettkampfid]" routerLinkActive="active">Teamverwaltung</a>
-  <a *ngIf="this.user==='admin' && this.status ==='1'" class="navButtons" mat-button [routerLink]="['/game', wettkampfid]" routerLinkActive="active">Neues Spiel</a>
-  <a class="navButtons" mat-button [routerLink]="['/chart', wettkampfid]" routerLinkActive="active">Tabelle</a>
-  <a *ngIf="this.user==='admin'" class="navButtons" mat-button [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
-  <a class="navButtons" style="float:right;" mat-button (click)="navigateStart()">Abmelden</a>
+  <a mat-list-item [routerLink]="['/home']" routerLinkActive="active">Home</a>
+  <a mat-list-item [routerLink]="['/player', wettkampfid]" routerLinkActive="active">Spielerkartei</a>
+  <a mat-list-item [routerLink]="['/teams', wettkampfid]" routerLinkActive="active">Teamverwaltung</a>
+  <a mat-list-item *ngIf="this.user==='admin' && this.status ==='1'" [routerLink]="['/game', wettkampfid]"
+    routerLinkActive="active">Neues Spiel</a>
+  <a mat-list-item [routerLink]="['/chart', wettkampfid]" routerLinkActive="active">Tabelle</a>
+  <a *ngIf="this.user==='admin'" mat-list-item [routerLink]="['/history', wettkampfid]" routerLinkActive="active">Spielplan</a>
+  <a mat-list-item style="float:right; cursor: pointer" (click)="navigateStart()">Abmelden</a>
 </div>
 <mat-spinner *ngIf="loading" class="mat-spinner-color" mode="indeterminate"></mat-spinner>

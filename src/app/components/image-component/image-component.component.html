@@ -9,9 +9,13 @@
       {{picture?.description}}
     </mat-card-subtitle>
     <mat-card-content style="margin-top: 10px;">
-      
-      <button mat-raised-button title="Vorheriges Bild" [disabled]="picture.id == 1" (click)="findPicture(picture.id - 1)" color="warn"><</button>
-      <button mat-raised-button [disabled]="picture.id == pictures.length" title="Nächstes Bild" (click)="findPicture(picture.id + 1)" color="warn">></button>
+
+      <button mat-raised-button title="Vorheriges Bild" [disabled]="picture.id == 1" (click)="findPicture(picture.id - 1)"
+        color="accent">
+        <i class="material-icons">chevron_left</i>
+      </button>
+      <button mat-raised-button [disabled]="picture.id == pictures.length" title="Nächstes Bild" (click)="findPicture(picture.id + 1)"
+        color="accent"><i class="material-icons">chevron_right</i></button>
       <button mat-raised-button color="primary" style="float:right" (click)="close()">schließen</button>
     </mat-card-content>
   </mat-card>

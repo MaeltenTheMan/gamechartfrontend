@@ -1,6 +1,6 @@
 
 import { Router } from '@angular/router';
-import { AsyncLocalStorage } from 'angular-async-local-storage'; 
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
@@ -11,6 +11,7 @@ import { SpinnerService } from '../../services/spinner.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
   loading: boolean;
 
   wettkampfid: any;
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     //on initialisation pulling localstorage to know witch tourney 
     this.getLocalStorageWKID();
     this.getLocalStorageAuthentication();

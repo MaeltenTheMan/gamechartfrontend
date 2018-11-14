@@ -3,6 +3,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: "helvetica neue", "sans-serif";
 }
 
 
@@ -15,7 +16,6 @@
 .headerSpan{
     float: left;
     padding-top: 10px;
-   
   }
 
 
@@ -48,11 +48,14 @@ mat-table{
 }
 mat-header-row{
     background-color: #333;
-    
     width: 100%;
- 
 }
 
 .material-icons:hover{
     cursor: pointer;
+}
+
+body{
+    margin: 0;
+    padding: 0;
 }
