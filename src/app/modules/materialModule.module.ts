@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatListModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule } from '@angular/material';
+import { DateAdapter,MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatListModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -13,11 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
-
-
-
-
+import { CustomDateAdapter } from '../utils/customDateAdapter';
 
 @NgModule({
 
@@ -48,8 +44,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatMenuModule,
         MatSidenavModule,
   
-
-
     ],
     exports: [
         MatButtonModule,
@@ -77,8 +71,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatListModule,
         MatMenuModule,
     
-
-
+    ],
+    providers: [
+        {
+            provide: DateAdapter,
+            useClass: CustomDateAdapter
+        }
     ]
 })
 export class MaterialComponentsModule { }
